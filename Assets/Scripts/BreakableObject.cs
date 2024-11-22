@@ -4,6 +4,7 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour
 {
     public GameObject brokenVersionPrefab;
+    public GameObject breakParticles;
     public float breakHeight = 2f;
     private bool isBeingHeld = false;
     private bool breakedByFalling = false;
@@ -46,6 +47,7 @@ public class BreakableObject : MonoBehaviour
     private void BreakObject()
     {
         Instantiate(brokenVersionPrefab, transform.position, transform.rotation);
+        Instantiate(breakParticles, transform.position, transform.rotation);
         Destroy(gameObject); // Destruir el objeto original
     }
 
@@ -56,8 +58,7 @@ public class BreakableObject : MonoBehaviour
         if (damagingObject != null)
         {
             // Llamamos al método Damage() cuando un objeto dañino golpea
-            damagingObject.Damage();
-            BreakObject();
+
         }
 
         if (breakedByFalling)
