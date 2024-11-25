@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,10 +6,12 @@ public class Sword : MonoBehaviour, IDamaging
 {
 
     [SerializeField]private int damage;
+    [SerializeField]private float speedThreshold = 100f;
+    [SerializeField] private float atackCd;
     private Rigidbody rb;
-[SerializeField]    private float speedThreshold = 100f;
-    // private float cooldownTime = 0.5f;
     private float currentSpeed;
+    private bool invulnerable = false;
+    
 
 
     void Start()
@@ -18,6 +21,7 @@ public class Sword : MonoBehaviour, IDamaging
 
     void Update()
     {
+        // Guarda constantemente la velocidad de la espada
         currentSpeed = rb.velocity.magnitude;
     }
 
@@ -29,14 +33,32 @@ public class Sword : MonoBehaviour, IDamaging
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Verifica si el objeto que colisiona implementa la interfaz IDamageable
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
 
+        // comprueba que el enemigo no es invulnerable y que el jugador este atacando lo suficientemente rapido
         if (damageable != null)
         {
             if (currentSpeed > speedThreshold)
             {
-                damageable.Damage(damage);
+                if (!invulnerable)
+                {
+                    // Llama a la corrutina HitEnemy
+                    StartCoroutine(HitEnemy(damageable));
+                }
             }
         }
+    }
+
+    // Corrutina que llama al metodo Damage() del objeto que haya golpeado la espada y crea un tempodicador para que tenga un tiempo de espera de ataque
+    IEnumerator HitEnemy(IDamageable damageable)
+    {
+        damageable.Damage(damage);
+
+        invulnerable = true;
+
+        yield return new WaitForSeconds(atackCd);
+
+        invulnerable = false;
     }
 }
