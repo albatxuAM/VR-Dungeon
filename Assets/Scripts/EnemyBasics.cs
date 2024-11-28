@@ -9,18 +9,21 @@ using Random = UnityEngine.Random;
 public class EnemyBasics : MonoBehaviour, IDamageable
 {
 
+    //Vida
     [SerializeField]private int health;
     private int currentHealth;
+
+    //NavAgent
     [SerializeField]private NavMeshAgent agent;
     [SerializeField]public Transform player;
-    [SerializeField]public LayerMask whatIsGround, whatIsPlayer;
+    [SerializeField]public LayerMask whatIsGround, whatIsWall, whatIsPlayer;
 
-    //Patroling
+    //Patrullaje
     private Vector3 walkPoint;
     private bool walkPointSet;
     [SerializeField]private float walkPointRange;
 
-    //States
+    //Estados
     [SerializeField]private float sightRange;
     public bool playerInSightRange;
 
@@ -38,7 +41,6 @@ public class EnemyBasics : MonoBehaviour, IDamageable
 
         if (!playerInSightRange) Patroling();
         if (playerInSightRange) ChasePlayer();
-        //if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     public void TakeDamage(int damage)
@@ -59,32 +61,28 @@ public class EnemyBasics : MonoBehaviour, IDamageable
     {
         if (!walkPointSet) SearchWalkPoint();
 
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
+        if (walkPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
+        if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
     }
 
     private void SearchWalkPoint()
     {
-        //Calculate random point in range
+        //Calcula un punto alatorio dentro del rango
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        Vector3 directionToWalkPoint = walkPoint - transform.position;
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && !Physics.Raycast(transform.position, directionToWalkPoint.normalized, directionToWalkPoint.magnitude, whatIsWall)) walkPointSet = true;
     }
 
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        //transform.LookAt(player);
     }
 
     private void OnDrawGizmosSelected()
@@ -103,5 +101,7 @@ public class EnemyBasics : MonoBehaviour, IDamageable
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(walkPoint, 0.1f);
         }
+
+        Debug.DrawLine(transform.position, walkPoint, Color.green, 2f);
     }
 }
