@@ -53,7 +53,7 @@ public class Sword : MonoBehaviour, IDamaging
     // Corrutina que llama al metodo Damage() del objeto que haya golpeado la espada y crea un tempodicador para que tenga un tiempo de espera de ataque
     IEnumerator HitEnemy(IDamageable damageable)
     {
-        damageable.Damage(damage);
+        damageable.TakeDamage(damage);
 
         invulnerable = true;
 

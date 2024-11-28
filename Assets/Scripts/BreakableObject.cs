@@ -55,7 +55,7 @@ public class BreakableObject : MonoBehaviour
         IDamaging damagingObject = collision.gameObject.GetComponent<IDamaging>();
         if (damagingObject != null)
         {
-            // Llamamos al método Damage() cuando un objeto dañino golpea
+            // Llamamos al mï¿½todo Damage() cuando un objeto daï¿½ino golpea
             damagingObject.Damage();
             BreakObject();
         }

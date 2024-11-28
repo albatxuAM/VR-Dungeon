@@ -9,140 +9,99 @@ using Random = UnityEngine.Random;
 public class EnemyBasics : MonoBehaviour, IDamageable
 {
 
-    [SerializeField]public int health;
+    [SerializeField]private int health;
     private int currentHealth;
+    [SerializeField]private NavMeshAgent agent;
+    [SerializeField]public Transform player;
+    [SerializeField]public LayerMask whatIsGround, whatIsPlayer;
 
-    // Start is called before the first frame update
-    void Start()
+    //Patroling
+    private Vector3 walkPoint;
+    private bool walkPointSet;
+    [SerializeField]private float walkPointRange;
+
+    //States
+    [SerializeField]private float sightRange;
+    public bool playerInSightRange;
+
+
+    private void Awake()
     {
         currentHealth = health;
+        agent = GetComponent<NavMeshAgent>();
     }
 
-    public void Damage(int damage)
+    private void Update()
+    {
+        // Mira si el jugador esta dentro del rango de vista
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+
+        if (!playerInSightRange) Patroling();
+        if (playerInSightRange) ChasePlayer();
+        //if (playerInAttackRange && playerInSightRange) AttackPlayer();
+    }
+
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log("Enemigo golpeado. Vida restante: " + currentHealth);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0) Invoke(nameof(DestroyEnemy), 0f);
+    }
+
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
+        Debug.Log("Enemigo derrotado");
+    }
+
+    private void Patroling()
+    {
+        if (!walkPointSet) SearchWalkPoint();
+
+        if (walkPointSet)
+            agent.SetDestination(walkPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        //Walkpoint reached
+        if (distanceToWalkPoint.magnitude < 1f)
+            walkPointSet = false;
+    }
+
+    private void SearchWalkPoint()
+    {
+        //Calculate random point in range
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            walkPointSet = true;
+    }
+
+    private void ChasePlayer()
+    {
+        agent.SetDestination(player.position);
+        //transform.LookAt(player);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Rango de visión
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        // Rango de patrullaje
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, walkPointRange);
+
+        // Punto al que el enemigo se moverá, solo si el punto ya está establecido
+        if (walkPointSet)
         {
-            Debug.Log("Enemigo derrotado");
-            Destroy(this.gameObject);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(walkPoint, 0.1f);
         }
     }
-
-
-
-
-    public NavMeshAgent agent;
-
-public Transform player;
-
-public LayerMask whatIsGround, whatIsPlayer;
-
-public float health2;
-
-//Patroling
-public Vector3 walkPoint;
-bool walkPointSet;
-public float walkPointRange;
-
-//Attacking
-public float timeBetweenAttacks;
-bool alreadyAttacked;
-public GameObject projectile;
-
-//States
-public float sightRange, attackRange;
-public bool playerInSightRange, playerInAttackRange;
-
-private void Awake()
-{
-    player = GameObject.Find("PlayerObj").transform;
-    agent = GetComponent<NavMeshAgent>();
-}
-
-private void Update()
-{
-    //Check for sight and attack range
-    playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-    playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-    if (!playerInSightRange && !playerInAttackRange) Patroling();
-    if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-    if (playerInAttackRange && playerInSightRange) AttackPlayer();
-}
-
-private void Patroling()
-{
-    if (!walkPointSet) SearchWalkPoint();
-
-    if (walkPointSet)
-        agent.SetDestination(walkPoint);
-
-    Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-    //Walkpoint reached
-    if (distanceToWalkPoint.magnitude < 1f)
-        walkPointSet = false;
-}
-private void SearchWalkPoint()
-{
-    //Calculate random point in range
-    float randomZ = Random.Range(-walkPointRange, walkPointRange);
-    float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-    walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-    if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        walkPointSet = true;
-}
-
-private void ChasePlayer()
-{
-    agent.SetDestination(player.position);
-}
-
-private void AttackPlayer()
-{
-    //Make sure enemy doesn't move
-    agent.SetDestination(transform.position);
-
-    transform.LookAt(player);
-
-    if (!alreadyAttacked)
-    {
-        ///Attack code here
-        Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-        ///End of attack code
-
-        alreadyAttacked = true;
-        Invoke(nameof(ResetAttack), timeBetweenAttacks);
-    }
-}
-private void ResetAttack()
-{
-    alreadyAttacked = false;
-}
-
-public void TakeDamage(int damage)
-{
-    health2 -= damage;
-
-    if (health2 <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-}
-private void DestroyEnemy()
-{
-    Destroy(gameObject);
-}
-
-private void OnDrawGizmosSelected()
-{
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(transform.position, attackRange);
-    Gizmos.color = Color.yellow;
-    Gizmos.DrawWireSphere(transform.position, sightRange);
-}
-
 }
