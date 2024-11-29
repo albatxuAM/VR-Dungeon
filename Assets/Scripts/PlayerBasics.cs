@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBasics : MonoBehaviour
+public class PlayerBasics : MonoBehaviour, IDamageable
 {
 
     [SerializeField]public int maxHealth;
@@ -10,11 +10,6 @@ public class PlayerBasics : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(10);
-            Debug.Log("te has hecho daño");
-        }
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log(currentHealth);
@@ -30,5 +25,6 @@ public class PlayerBasics : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("te has hecho daño, vida restante" + currentHealth);
     }
 }

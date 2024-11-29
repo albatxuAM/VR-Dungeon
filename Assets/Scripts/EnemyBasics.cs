@@ -27,6 +27,11 @@ public class EnemyBasics : MonoBehaviour, IDamageable
     [SerializeField]private float sightRange;
     public bool playerInSightRange;
 
+    //Sistema de ataque
+    [SerializeField]private int damage;
+    [SerializeField]private float atackCd;
+    private bool invulnerable = false;
+
 
     private void Awake()
     {
@@ -103,5 +108,34 @@ public class EnemyBasics : MonoBehaviour, IDamageable
         }
 
         Debug.DrawLine(transform.position, walkPoint, Color.green, 2f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Verifica si el objeto que colisiona implementa la interfaz IDamageable
+        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+
+        // comprueba que el player no es invulnerable
+        if (damageable != null)
+        {
+            if (!invulnerable)
+            {
+                // Llama a la corrutina HitEnemy
+                StartCoroutine(HitEnemy(damageable));
+                //Debug.Log("has sido atacado");
+            }
+        }
+    }
+
+    // Corrutina que llama al metodo Damage() del objeto que haya golpeado la espada y crea un tempodicador para que tenga un tiempo de espera de ataque
+    IEnumerator HitEnemy(IDamageable damageable)
+    {
+        damageable.TakeDamage(damage);
+
+        invulnerable = true;
+
+        yield return new WaitForSeconds(atackCd);
+
+        invulnerable = false;
     }
 }
