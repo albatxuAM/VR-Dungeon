@@ -2730,6 +2730,56 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Mazmorra",
+            "id": "f9176aea-ae7b-45ef-9441-5b2085ae9c2f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "af36b064-6657-4863-aaa3-c3e5ed026e7b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5f72eb5b-4594-4ee2-a116-ebd3f5498d9a",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/thumbstickclicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04d91d95-02be-471c-a0f6-eb08f006354d",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/thumbstickclicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2da4569e-68a2-42f6-a641-02c6f28b2161",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
