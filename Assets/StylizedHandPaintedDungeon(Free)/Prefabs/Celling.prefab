@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5239272197777735519}
   - component: {fileID: 3678973289713127402}
   - component: {fileID: 7116314708630045766}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Celling
   m_TagString: Untagged
   m_Icon: {fileID: 0}

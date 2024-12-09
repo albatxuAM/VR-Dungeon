@@ -152,12 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0763b230d22fd334bbc9441aed267b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ramdomSeed: 0
+  ramdomSeed: 17
   size: {x: 30, y: 30}
   roomCount: 50
   roomMaxSize: {x: 8, y: 8}
   roomMinSize: {x: 4, y: 4}
-  mapMultiplier: 1
+  mapMultiplier: 2
   floorTilePrefab: {fileID: 9100508158649072905, guid: e348e7143b6247b488737e4be26fb038,
     type: 3}
   ceilingTilePrefab: {fileID: 9100508158649072905, guid: 79d0c63d01d593f4480cc603ed60ca95,
