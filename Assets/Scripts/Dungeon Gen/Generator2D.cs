@@ -741,7 +741,7 @@ public class Generator2D : MonoBehaviour
         );
 
         // Instanciar al jugador en el centro de la habitación más pequeña
-        Instantiate(playerPrefab, new Vector3(center.x, 0.5f, center.y), Quaternion.identity, parentTransform);
+        Instantiate(playerPrefab, new Vector3(center.x, 0.5f, center.y), Quaternion.identity);
 
         Debug.Log($"Player placed at room center: {center}");
     }
