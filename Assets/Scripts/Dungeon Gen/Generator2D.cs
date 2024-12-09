@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Graphs;
+using Unity.AI.Navigation;
+using UnityEngine;
 using Random = System.Random;
 
 public class Generator2D : MonoBehaviour
