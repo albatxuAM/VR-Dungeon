@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using Graphs;
-using Unity.AI.Navigation;
-using UnityEngine;
 using Random = System.Random;
 
 public class Generator2D : MonoBehaviour
@@ -41,11 +37,15 @@ public class Generator2D : MonoBehaviour
     Vector2Int roomMaxSize;
     [SerializeField]
     Vector2Int roomMinSize;
+    [SerializeField]
+    float mapMultiplier = 1;
 
     [Header("Map Tiles")]
     [Space(1)]
     [SerializeField]
     GameObject floorTilePrefab;
+    [SerializeField]
+    GameObject ceilingTilePrefab;
     [SerializeField]
     GameObject wallPrefab;
     [SerializeField]
@@ -54,6 +54,13 @@ public class Generator2D : MonoBehaviour
     GameObject pillarPrefab;
     [SerializeField]
     GameObject lampPrefab;
+    [SerializeField]
+    bool generateCeilling;
+
+    [Header("Player settings")]
+    [Space(1)]
+    [SerializeField]
+    GameObject playerPrefab;
 
     [Header("Debug variables")]
     [Space(1)]
@@ -86,6 +93,7 @@ public class Generator2D : MonoBehaviour
         mapObject = new GameObject("map_" + ramdomSeed);
 
         parentTransform = mapObject.transform;
+        //parentTransform.localScale = new Vector3(mapMultiplier, mapMultiplier, mapMultiplier);
 
         // Optionally, you can call a method to generate the map (if needed)
         Generate();
@@ -114,6 +122,10 @@ public class Generator2D : MonoBehaviour
         PlaceNavMesh();
 
         //PlaceLights();
+
+        PlacePlayer();
+
+        parentTransform.localScale = new Vector3(mapMultiplier, mapMultiplier, mapMultiplier);
     }
 
     private void PlaceNavMesh()
@@ -464,10 +476,24 @@ public class Generator2D : MonoBehaviour
                 if (grid[pos] == CellType.Room || grid[pos] == CellType.Hallway)
                 {
                     Instantiate(floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
+
+                    // Si generateCeilling está activo, generar un techo
+                    if (generateCeilling)
+                    {
+                        // Crear el techo con orientación hacia abajo
+                        Instantiate(ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
+                    }
                 }
                 else if (grid[pos] == CellType.Door)
                 {
                     Instantiate(floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
+
+                    // Si generateCeilling está activo, generar un techo
+                    if (generateCeilling)
+                    {
+                        Instantiate(ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
+                    }
+
                     PlaceDoorWithOrientation(pos);
                 }
             }
@@ -541,9 +567,9 @@ public class Generator2D : MonoBehaviour
                     Instantiate(wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
                     if (pos.x % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                     else if (pos.y % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                 }
             }
             return;
@@ -577,9 +603,9 @@ public class Generator2D : MonoBehaviour
             Instantiate(wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
             if (pos.x % 2 == 0)
-                Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
             else if (pos.y % 2 == 0)
-                Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
             return;
         }
@@ -598,9 +624,9 @@ public class Generator2D : MonoBehaviour
                     Instantiate(wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
                     if (pos.x % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                     else if (pos.y % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                 }
             }
             return;
@@ -687,6 +713,33 @@ public class Generator2D : MonoBehaviour
                 }
             }
         }
+    }
+    private void PlacePlayer()
+    {
+        // Verificar si el prefab del jugador está definido
+        if (playerPrefab == null)
+        {
+            Debug.LogWarning("Player prefab is null. Cannot place player.");
+            return;
+        }
+
+        // Verificar si la habitación más pequeña está definida
+        if (smallestRoom == null)
+        {
+            Debug.LogWarning("Smallest room is not defined. Cannot place player.");
+            return;
+        }
+
+        // Calcular el centro de la habitación más pequeña
+        Vector2Int center = new Vector2Int(
+            smallestRoom.bounds.x + smallestRoom.bounds.width / 2,
+            smallestRoom.bounds.y + smallestRoom.bounds.height / 2
+        );
+
+        // Instanciar al jugador en el centro de la habitación más pequeña
+        Instantiate(playerPrefab, new Vector3(center.x, 0.5f, center.y), Quaternion.identity, parentTransform);
+
+        Debug.Log($"Player placed at room center: {center}");
     }
 
     void PlaceCube(Vector2Int location, Vector2Int size, Material material, int locationY = 0)
