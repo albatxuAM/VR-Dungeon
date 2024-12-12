@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 4ce4c4fc9ee146946b995e448faf1f27
+  - enabled: 1
+    path: Assets/Scenes/DeathScreen.unity
+    guid: fa8dea84b4d11e44ca783c9c2cc8cfef
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: ed72be55522c8448bae8b0d66fa21adf,
       type: 2}

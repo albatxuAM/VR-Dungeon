@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class DeathScreen : MonoBehaviour
 {
-    public void ExitGame()
+    public void MainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
-    public void PlayGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(1);
     }
