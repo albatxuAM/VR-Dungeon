@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class EnemyBasics : MonoBehaviour, IDamageable
@@ -116,7 +117,7 @@ public class EnemyBasics : MonoBehaviour, IDamageable
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
 
         // comprueba que el player no es invulnerable
-        if (damageable != null)
+        if (damageable != null && collision.gameObject.tag != "Enemy")
         {
             if (!invulnerable)
             {
@@ -134,8 +135,14 @@ public class EnemyBasics : MonoBehaviour, IDamageable
 
         invulnerable = true;
 
+        Transform playerSave = player;
+
+        player = this.transform;
+
         yield return new WaitForSeconds(atackCd);
 
         invulnerable = false;
+
+        player = playerSave;
     }
 }
