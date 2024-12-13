@@ -5,13 +5,14 @@ using UnityEngine;
 public class Sword : MonoBehaviour, IDamaging
 {
 
+    [SerializeField] private ParticleSystem particleFX;
     [SerializeField]private int damage;
     [SerializeField]private float speedThreshold = 100f;
     [SerializeField] private float atackCd;
     private Rigidbody rb;
     private float currentSpeed;
     private bool invulnerable = false;
-    BloodParticle bloodParticle;
+    
 
 
     void Start()
@@ -47,7 +48,10 @@ public class Sword : MonoBehaviour, IDamaging
                 {
                     // Llama a la corrutina HitEnemy
                     StartCoroutine(HitEnemy(damageable));
-                    bloodParticle.PlayDamageFx();
+                    Vector3 positionP = collision.contacts[0].point;
+                    Instantiate(particleFX,positionP,collision.transform.rotation);
+                
+                  
                 }
             }
         }
