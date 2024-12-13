@@ -11,7 +11,7 @@ public class Sword : MonoBehaviour, IDamaging
     private Rigidbody rb;
     private float currentSpeed;
     private bool invulnerable = false;
-    
+    BloodParticle bloodParticle;
 
 
     void Start()
@@ -29,6 +29,8 @@ public class Sword : MonoBehaviour, IDamaging
     {
         // L�gica para cuando la espada golpea algo
         Debug.Log("�La espada ha golpeado!");
+        
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,6 +47,7 @@ public class Sword : MonoBehaviour, IDamaging
                 {
                     // Llama a la corrutina HitEnemy
                     StartCoroutine(HitEnemy(damageable));
+                    bloodParticle.PlayDamageFx();
                 }
             }
         }
