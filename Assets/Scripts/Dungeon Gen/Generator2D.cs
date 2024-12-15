@@ -32,39 +32,7 @@ public class Generator2D : MonoBehaviour
 
     [Header("Configuration")]
     [SerializeField]
-    int ramdomSeed;
-    [SerializeField]
-    Vector2Int size;
-    [SerializeField]
-    int roomCount;
-    [SerializeField]
-    Vector2Int roomMaxSize;
-    [SerializeField]
-    Vector2Int roomMinSize;
-    [SerializeField]
-    float mapMultiplier = 1;
-
-    [Header("Map Tiles")]
-    [Space(1)]
-    [SerializeField]
-    GameObject floorTilePrefab;
-    [SerializeField]
-    GameObject ceilingTilePrefab;
-    [SerializeField]
-    GameObject wallPrefab;
-    [SerializeField]
-    GameObject doorPrefab;
-    [SerializeField]
-    GameObject pillarPrefab;
-    [SerializeField]
-    GameObject lampPrefab;
-    [SerializeField]
-    bool generateCeilling;
-
-    [Header("Player settings")]
-    [Space(1)]
-    [SerializeField]
-    GameObject playerPrefab;
+    private MapGeneratorConfig config;
 
     [Header("Debug variables")]
     [Space(1)]
@@ -94,7 +62,7 @@ public class Generator2D : MonoBehaviour
     void Start()
     {
         // Create the empty GameObject with the name "map_seedNum"
-        mapObject = new GameObject("map_" + ramdomSeed);
+        mapObject = new GameObject("map_" + config.randomSeed);
 
         parentTransform = mapObject.transform;
         //parentTransform.localScale = new Vector3(mapMultiplier, mapMultiplier, mapMultiplier);
@@ -105,8 +73,8 @@ public class Generator2D : MonoBehaviour
 
     void Generate()
     {
-        random = new Random(ramdomSeed);
-        grid = new Grid2D<CellType>(size, Vector2Int.zero);
+        random = new Random(config.randomSeed);
+        grid = new Grid2D<CellType>(config.size, Vector2Int.zero);
         rooms = new List<Room>();
         PlaceRooms();
         Triangulate();
@@ -123,13 +91,14 @@ public class Generator2D : MonoBehaviour
 
         //Parte visible
         BuildLevel();
-        PlaceNavMesh();
 
         //PlaceLights();
 
         PlacePlayer();
 
-        parentTransform.localScale = new Vector3(mapMultiplier, mapMultiplier, mapMultiplier);
+        parentTransform.localScale = new Vector3(config.mapMultiplier, config.mapMultiplier, config.mapMultiplier);
+
+        PlaceNavMesh();
     }
 
     private void PlaceNavMesh()
@@ -164,7 +133,7 @@ public class Generator2D : MonoBehaviour
                     if (grid[pos] == CellType.Room || grid[pos] == CellType.Door)
                     {
                         // Instanciar el prefab de la losa del piso en la posición (x, y) dentro del padre
-                        Instantiate(floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, roomObj.transform);
+                        Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, roomObj.transform);
                     }
                 }
             }
@@ -189,11 +158,11 @@ public class Generator2D : MonoBehaviour
         while (!minRoomPlaced)
         {
             Vector2Int location = new Vector2Int(
-                random.Next(0, size.x),
-                random.Next(0, size.y)
+                random.Next(0, config.size.x),
+                random.Next(0, config.size.y)
             );
 
-            Vector2Int roomSize = roomMinSize; // Forzamos el tamaño mínimo.
+            Vector2Int roomSize = config.roomMinSize; // Forzamos el tamaño mínimo.
             Room newRoom = new Room(location, roomSize);
             Room buffer = new Room(location + new Vector2Int(-1, -1), roomSize + new Vector2Int(2, 2));
 
@@ -208,8 +177,8 @@ public class Generator2D : MonoBehaviour
                 }
             }
 
-            if (newRoom.bounds.xMin < 0 || newRoom.bounds.xMax >= size.x
-                || newRoom.bounds.yMin < 0 || newRoom.bounds.yMax >= size.y)
+            if (newRoom.bounds.xMin < 0 || newRoom.bounds.xMax >= config.size.x
+                || newRoom.bounds.yMin < 0 || newRoom.bounds.yMax >= config.size.y)
             {
                 add = false;
             }
@@ -230,16 +199,16 @@ public class Generator2D : MonoBehaviour
         }
 
         // Continuar generando salas restantes aleatoriamente
-        for (int i = 0; i < roomCount; i++)
+        for (int i = 0; i < config.roomCount; i++)
         {
             Vector2Int location = new Vector2Int(
-                random.Next(0, size.x),
-                random.Next(0, size.y)
+                random.Next(0, config.size.x),
+                random.Next(0, config.size.y)
             );
 
             Vector2Int roomSize = new Vector2Int(
-                random.Next(roomMinSize.x, roomMaxSize.x + 1),
-                random.Next(roomMinSize.y, roomMaxSize.y + 1)
+                random.Next(config.roomMinSize.x, config.roomMaxSize.x + 1),
+                random.Next(config.roomMinSize.y, config.roomMaxSize.y + 1)
             );
 
             bool add = true;
@@ -255,8 +224,8 @@ public class Generator2D : MonoBehaviour
                 }
             }
 
-            if (newRoom.bounds.xMin < 0 || newRoom.bounds.xMax >= size.x
-                || newRoom.bounds.yMin < 0 || newRoom.bounds.yMax >= size.y)
+            if (newRoom.bounds.xMin < 0 || newRoom.bounds.xMax >= config.size.x
+                || newRoom.bounds.yMin < 0 || newRoom.bounds.yMax >= config.size.y)
             {
                 add = false;
             }
@@ -312,7 +281,7 @@ public class Generator2D : MonoBehaviour
 
     void PathfindHallways()
     {
-        DungeonPathfinder2D aStar = new DungeonPathfinder2D(size);
+        DungeonPathfinder2D aStar = new DungeonPathfinder2D(config.size);
 
         foreach (var edge in selectedEdges)
         {
@@ -367,14 +336,6 @@ public class Generator2D : MonoBehaviour
                     }
                 }
 
-                //foreach (var pos in path)
-                //{
-                //    if (grid[pos] == CellType.Hallway)
-                //    {
-                //        PlaceHallway(pos);
-                //    }
-                //}
-
                 for (int i = 0; i < path.Count - 1; i++)
                 {
                     var curr = path[i];
@@ -412,9 +373,9 @@ public class Generator2D : MonoBehaviour
     private void PlaceDoors()
     {
         // Recorrer el grid completo
-        for (int y = 0; y < size.y; y++)
+        for (int y = 0; y < config.size.y; y++)
         {
-            for (int x = 0; x < size.x; x++)
+            for (int x = 0; x < config.size.x; x++)
             {
                 Vector2Int currentPos = new Vector2Int(x, y);
 
@@ -466,36 +427,36 @@ public class Generator2D : MonoBehaviour
     private bool InBounds(Vector2Int pos)
     {
         // Verifica si la posición está dentro de los límites del grid
-        return pos.x >= 0 && pos.x < size.x && pos.y >= 0 && pos.y < size.y;
+        return pos.x >= 0 && pos.x < config.size.x && pos.y >= 0 && pos.y < config.size.y;
     }
 
     void BuildLevel()
     {
-        for (int y = 0; y < size.y; y++)
+        for (int y = 0; y < config.size.y; y++)
         {
-            for (int x = 0; x < size.x; x++)
+            for (int x = 0; x < config.size.x; x++)
             {
                 Vector2Int pos = new Vector2Int(x, y);
 
                 if (grid[pos] == CellType.Room || grid[pos] == CellType.Hallway)
                 {
-                    Instantiate(floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
+                    Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
 
                     // Si generateCeilling está activo, generar un techo
-                    if (generateCeilling)
+                    if (config.generateCeiling)
                     {
                         // Crear el techo con orientación hacia abajo
-                        Instantiate(ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
+                        Instantiate(config.ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
                     }
                 }
                 else if (grid[pos] == CellType.Door)
                 {
-                    Instantiate(floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
+                    Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
 
                     // Si generateCeilling está activo, generar un techo
-                    if (generateCeilling)
+                    if (config.generateCeiling)
                     {
-                        Instantiate(ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
+                        Instantiate(config.ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
                     }
 
                     PlaceDoorWithOrientation(pos);
@@ -504,9 +465,9 @@ public class Generator2D : MonoBehaviour
         }
 
         // Colocar paredes en un segundo paso
-        for (int y = 0; y < size.y; y++)
+        for (int y = 0; y < config.size.y; y++)
         {
-            for (int x = 0; x < size.x; x++)
+            for (int x = 0; x < config.size.x; x++)
             {
                 Vector2Int pos = new Vector2Int(x, y);
                 PlaceWalls(pos);
@@ -545,18 +506,18 @@ public class Generator2D : MonoBehaviour
             Vector3 doorPosition = new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f);
 
             // Instancia la puerta
-            Instantiate(doorPrefab, doorPosition, rotation, parentTransform);
+            Instantiate(config.doorPrefab, doorPosition, rotation, parentTransform);
         }
         else
         {
             // Si no hay una conexión válida, coloca la puerta sin rotación como fallback
-            Instantiate(doorPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity, parentTransform);
+            Instantiate(config.doorPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity, parentTransform);
         }
     }
 
     void PlaceWalls(Vector2Int pos)
     {
-        bool isAtMapEdge = pos.x == 0 || pos.x == size.x || pos.y == 0 || pos.y == size.y;
+        bool isAtMapEdge = pos.x == 0 || pos.x == config.size.x || pos.y == 0 || pos.y == config.size.y;
 
         if (grid[pos] == CellType.None)
         {
@@ -568,12 +529,12 @@ public class Generator2D : MonoBehaviour
                     Vector3 direction = new Vector3(neighbor.x - pos.x, 0, neighbor.y - pos.y);
                     Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-                    Instantiate(wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                    Instantiate(config.wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
                     if (pos.x % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                     else if (pos.y % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                 }
             }
             return;
@@ -589,7 +550,7 @@ public class Generator2D : MonoBehaviour
             {
                 direction = Vector3.left;
             }
-            else if (pos.x == size.x - 1) // Borde derecho
+            else if (pos.x == config.size.x - 1) // Borde derecho
             {
                 direction = Vector3.right;
             }
@@ -597,19 +558,19 @@ public class Generator2D : MonoBehaviour
             {
                 direction = Vector3.back;
             }
-            else if (pos.y == size.y - 1) // Borde superior
+            else if (pos.y == config.size.y - 1) // Borde superior
             {
                 direction = Vector3.forward;
             }
 
             // Coloca la pared con la dirección opuesta al borde
             Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-            Instantiate(wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
+            Instantiate(config.wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
             if (pos.x % 2 == 0)
-                Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
             else if (pos.y % 2 == 0)
-                Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
             return;
         }
@@ -625,12 +586,12 @@ public class Generator2D : MonoBehaviour
                     Vector3 direction = new Vector3(neighbor.x - pos.x, 0, neighbor.y - pos.y);
                     Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-                    Instantiate(wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                    Instantiate(config.wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
                     if (pos.x % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                     else if (pos.y % 2 == 0)
-                        Instantiate(lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
                 }
             }
             return;
@@ -648,34 +609,13 @@ public class Generator2D : MonoBehaviour
                     Vector3 direction = new Vector3(pos.x - neighbor.x, 0, pos.y - neighbor.y);
                     Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-                    Instantiate(wallPrefab, new Vector3(neighbor.x, 0, neighbor.y), rotation, parentTransform);
+                    Instantiate(config.wallPrefab, new Vector3(neighbor.x, 0, neighbor.y), rotation, parentTransform);
                 }
             }
         }
     }
     void PlacePillars(Vector2Int pos)
     {
-        //if (grid[pos] == CellType.None)
-        //{
-        //    int adjacentCount = 0;
-        //    List<Vector2Int> neighborsWithHall = new List<Vector2Int>();
-
-        //    foreach (var neighbor in GetNeighbors(pos))
-        //    {
-        //        if (grid[neighbor] == CellType.Hallway)
-        //        {
-        //            adjacentCount++;
-        //        }
-        //    }
-
-        //    // Colocar un pilar si es una esquina (dos vecinos perpendiculares)
-        //    if (adjacentCount >= 2)
-        //    {
-
-        //        Instantiate(pillarPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
-        //    }
-        //}
-
         if (grid[pos] == CellType.Room)
         {
             int adjacentCount = 0;
@@ -712,7 +652,7 @@ public class Generator2D : MonoBehaviour
                     Quaternion rotation = Quaternion.LookRotation(pilarDirection, Vector3.up);
 
                     // Colocamos el pilar en la posición calculada
-                    Instantiate(pillarPrefab, pillarPos, Quaternion.identity, parentTransform);
+                    Instantiate(config.pillarPrefab, pillarPos, Quaternion.identity, parentTransform);
                     //Instantiate(pillarPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
                 }
             }
@@ -721,7 +661,7 @@ public class Generator2D : MonoBehaviour
     private void PlacePlayer()
     {
         // Verificar si el prefab del jugador está definido
-        if (playerPrefab == null)
+        if (config.playerPrefab == null)
         {
             Debug.LogWarning("Player prefab is null. Cannot place player.");
             return;
@@ -736,12 +676,16 @@ public class Generator2D : MonoBehaviour
 
         // Calcular el centro de la habitación más pequeña
         Vector2Int center = new Vector2Int(
-            smallestRoom.bounds.x + smallestRoom.bounds.width / 2,
-            smallestRoom.bounds.y + smallestRoom.bounds.height / 2
+            smallestRoom.bounds.x + smallestRoom.bounds.width / 2 - 1,
+            smallestRoom.bounds.y + smallestRoom.bounds.height / 2 - 1
         );
 
         // Instanciar al jugador en el centro de la habitación más pequeña
-        Instantiate(playerPrefab, new Vector3(center.x, 0.5f, center.y), Quaternion.identity);
+        Instantiate(config.playerPrefab, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
+
+        // Instanciamos el objeto
+        GameObject instantiatedExitArea = Instantiate(config.exitArea, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
+        instantiatedExitArea.transform.localScale = new Vector3(config.roomMinSize.x, 2, config.roomMinSize.y);
 
         Debug.Log($"Player placed at room center: {center}");
     }
