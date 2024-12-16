@@ -11,6 +11,9 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddToInventory(string itemName, int quantity = 1)
     {
+        // Convertir el nombre del ítem a minúsculas
+        itemName = itemName.ToLower();
+
         if (inventory.ContainsKey(itemName))
         {
             inventory[itemName] += quantity;
@@ -32,6 +35,9 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveFromInventory(string itemName, int quantity = 1)
     {
+        // Convertir el nombre del ítem a minúsculas
+        itemName = itemName.ToLower();
+
         if (inventory.ContainsKey(itemName))
         {
             inventory[itemName] -= quantity;
@@ -52,5 +58,13 @@ public class InventoryManager : MonoBehaviour
     public Dictionary<string, int> GetInventory()
     {
         return new Dictionary<string, int>(inventory);
+    }
+
+    public bool DoesItemExist(string itemName)
+    {
+        // Convertir el nombre del ítem a minúsculas
+        itemName = itemName.ToLower();
+
+        return inventory.ContainsKey(itemName);
     }
 }

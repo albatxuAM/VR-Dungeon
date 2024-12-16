@@ -528,6 +528,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &62554565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1194594807569662240, guid: 0532f0e17858511449ce94a1d3065778,
+    type: 3}
+  m_PrefabInstance: {fileID: 8884663659462093214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &254911320
 GameObject:
   m_ObjectHideFlags: 0
@@ -4815,6 +4821,7 @@ MonoBehaviour:
   RotatingSpeed: 180
   PickupSfx: {fileID: 0}
   PickupVfxPrefab: {fileID: 0}
+  parentObj: {fileID: 62554565}
 --- !u!54 &1032200965
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8120,7 +8127,7 @@ PrefabInstance:
     - target: {fileID: 3075664468174235787, guid: 7d5aca66e7c747348b0356a14bc0b4aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66.630295
+      value: 67.95
       objectReference: {fileID: 0}
     - target: {fileID: 3075664468174235787, guid: 7d5aca66e7c747348b0356a14bc0b4aa,
         type: 3}
@@ -8130,7 +8137,7 @@ PrefabInstance:
     - target: {fileID: 3075664468174235787, guid: 7d5aca66e7c747348b0356a14bc0b4aa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.79877
+      value: 36.43
       objectReference: {fileID: 0}
     - target: {fileID: 3075664468174235787, guid: 7d5aca66e7c747348b0356a14bc0b4aa,
         type: 3}
