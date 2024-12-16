@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ParticleTimer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
         StartCoroutine(DeleteParticle());
     }
@@ -13,6 +13,6 @@ public class ParticleTimer : MonoBehaviour
     IEnumerator DeleteParticle()
     {
         yield return new WaitForSeconds(1f);
-        Destroy(gameObject);   
+        SimplePool.Despawn(gameObject);
     }
 }

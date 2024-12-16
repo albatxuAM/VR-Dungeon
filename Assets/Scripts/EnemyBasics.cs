@@ -33,9 +33,12 @@ public class EnemyBasics : MonoBehaviour, IDamageable
     [SerializeField]private float atackCd;
     private bool invulnerable = false;
 
+    private Rigidbody rb;
+
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         currentHealth = health;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -54,7 +57,13 @@ public class EnemyBasics : MonoBehaviour, IDamageable
         currentHealth -= damage;
         Debug.Log("Enemigo golpeado. Vida restante: " + currentHealth);
 
-        if (currentHealth <= 0) Invoke(nameof(DestroyEnemy), 0f);
+        if (currentHealth <= 0) 
+        {
+            rb.useGravity = true;
+            
+            player = null;
+            Invoke(nameof(DestroyEnemy), 3f);
+        }
     }
 
     private void DestroyEnemy()

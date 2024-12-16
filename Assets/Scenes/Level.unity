@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 259417160}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -733,7 +733,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &259417162
 Rigidbody:
@@ -760,7 +760,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &259417163
 CapsuleCollider:
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 298030317}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -921,7 +921,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &298030319
 Rigidbody:
@@ -948,7 +948,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &298030320
 CapsuleCollider:
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 307365887}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &307365889
 Rigidbody:
@@ -1136,7 +1136,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &307365890
 CapsuleCollider:
@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 323200105}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &323200107
 Rigidbody:
@@ -1324,7 +1324,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &323200108
 CapsuleCollider:
@@ -1879,7 +1879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 475712533}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &475712535
 Rigidbody:
@@ -1921,7 +1921,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &475712536
 CapsuleCollider:
@@ -2067,7 +2067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 545172640}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -2082,7 +2082,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &545172642
 Rigidbody:
@@ -2109,7 +2109,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &545172643
 CapsuleCollider:
@@ -2356,6 +2356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthBar: {fileID: 0}
 --- !u!114 &659335843 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3656114934633903323, guid: 895f6f3c2d334633b5800312285058d2,
@@ -2940,6 +2941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 790743190}
   - component: {fileID: 790743191}
+  - component: {fileID: 790743192}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -3019,6 +3021,50 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &790743192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790743189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c743c75e8ef034abacbea918806805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 790743191}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0.9441805, g: 1, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0.061501026, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 18376
+    ctime1: 37394
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_ColorSpace: -1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fill: {fileID: 421732052}
 --- !u!1 &790803804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,7 +3121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 790803805}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -3090,7 +3136,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &790803807
 Rigidbody:
@@ -3117,7 +3163,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &790803808
 CapsuleCollider:
@@ -3433,7 +3479,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_SelectActionTrigger: 1
+  m_SelectActionTrigger: 2
   m_HideControllerOnSelect: 1
   m_AllowHoveredActivate: 0
   m_TargetPriorityMode: 0
@@ -4397,7 +4443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 947162029}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -4412,7 +4458,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &947162031
 Rigidbody:
@@ -4439,7 +4485,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &947162032
 CapsuleCollider:
@@ -4739,7 +4785,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!195 &1024983403
 NavMeshAgent:
@@ -4775,7 +4821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 1024983403}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -4790,7 +4836,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!1 &1212192100
 GameObject:
@@ -5268,7 +5314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c1ae26be80b8745ba6fe9e640b9b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 5
+  healthBar: {fileID: 790743192}
 --- !u!114 &1756261134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7091,7 +7138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3017c55fb836a48b158cd4959442ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   agent: {fileID: 2145372670}
   player: {fileID: 1756261125}
   whatIsGround:
@@ -7106,7 +7153,7 @@ MonoBehaviour:
   walkPointRange: 4
   sightRange: 5
   playerInSightRange: 0
-  damage: 10
+  damage: 1
   atackCd: 2
 --- !u!54 &2145372672
 Rigidbody:
@@ -7133,7 +7180,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &2145372673
 CapsuleCollider:
@@ -7730,12 +7777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7ab607b96d3ac4fbb58afc05e961df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 2
   soundSpeedThreshold: 15
   speedThreshold: 2
   atackCd: 0.5
   audioSource: {fileID: 6684739966989032959}
-  particleFX: {fileID: 2939995595109188856, guid: 645fceb399613514aa6f44aa30bed38c,
+  particleFX: {fileID: 2574748690684015164, guid: 645fceb399613514aa6f44aa30bed38c,
     type: 3}
 --- !u!82 &6684739966989032959
 AudioSource:

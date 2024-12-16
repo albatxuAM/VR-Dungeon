@@ -11,7 +11,7 @@ public class Sword : MonoBehaviour, IDamaging
     [SerializeField]private float speedThreshold;
     [SerializeField] private float atackCd;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private ParticleSystem particleFX;
+    [SerializeField] private GameObject particleFX;
     private Rigidbody rb;
     private float currentSpeed;
     private bool invulnerable = false;
@@ -61,7 +61,7 @@ public class Sword : MonoBehaviour, IDamaging
                     // Llama a la corrutina HitEnemy
                     StartCoroutine(HitEnemy(damageable));
                     Vector3 positionP = collision.contacts[0].point;
-                    Instantiate(particleFX,positionP,collision.transform.rotation);
+                    SimplePool.Spawn(particleFX,positionP,collision.transform.rotation);
                 }
             }
         }
