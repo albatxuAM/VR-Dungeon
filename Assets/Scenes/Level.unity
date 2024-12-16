@@ -7735,6 +7735,8 @@ MonoBehaviour:
   speedThreshold: 2
   atackCd: 0.5
   audioSource: {fileID: 6684739966989032959}
+  particleFX: {fileID: 2939995595109188856, guid: 645fceb399613514aa6f44aa30bed38c,
+    type: 3}
 --- !u!82 &6684739966989032959
 AudioSource:
   m_ObjectHideFlags: 0
