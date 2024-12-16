@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,14 +6,16 @@ using UnityEngine;
 public class Sword : MonoBehaviour, IDamaging
 {
 
-    [SerializeField] private ParticleSystem particleFX;
     [SerializeField]private int damage;
-    [SerializeField]private float speedThreshold = 100f;
+    [SerializeField]private float soundSpeedThreshold;
+    [SerializeField]private float speedThreshold;
     [SerializeField] private float atackCd;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private ParticleSystem particleFX;
     private Rigidbody rb;
     private float currentSpeed;
     private bool invulnerable = false;
-    
+    private float lastSoundTime = 0f;
 
 
     void Start()
@@ -24,14 +27,23 @@ public class Sword : MonoBehaviour, IDamaging
     {
         // Guarda constantemente la velocidad de la espada
         currentSpeed = rb.velocity.magnitude;
+
+        if (currentSpeed > soundSpeedThreshold && Time.time >= lastSoundTime + atackCd)
+        {
+            PlaySwordSound();
+        }
+    }
+
+    private void PlaySwordSound()
+    {
+        audioSource.Play();
+        lastSoundTime = Time.time;
     }
 
     public void Damage()
     {
         // L�gica para cuando la espada golpea algo
         Debug.Log("�La espada ha golpeado!");
-        
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,8 +62,6 @@ public class Sword : MonoBehaviour, IDamaging
                     StartCoroutine(HitEnemy(damageable));
                     Vector3 positionP = collision.contacts[0].point;
                     Instantiate(particleFX,positionP,collision.transform.rotation);
-                
-                  
                 }
             }
         }
