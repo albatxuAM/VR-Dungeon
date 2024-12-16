@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class KeyAreaTrigger : MonoBehaviour
 {
-
-
     private void OnTriggerEnter(Collider other)
     {
         // Verifica si el objeto que entró tiene un InventoryManager
@@ -33,5 +31,7 @@ public class KeyAreaTrigger : MonoBehaviour
         // Aquí puedes agregar animaciones, efectos, etc.
 
         //SceneManager.LoadScene("MainMenu");
+
+        LevelManager.Instance.NextLevel();
     }
 }
