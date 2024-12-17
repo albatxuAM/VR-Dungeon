@@ -34,6 +34,8 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);  // Eliminar instancias adicionales
         }
+
+        NextLevel();
     }
 
     private void Start()
@@ -109,7 +111,7 @@ public class LevelManager : MonoBehaviour
             LoadLevel(currentLevelIndex);
 
             // Teletransportar al jugador al spawnPoint del nuevo nivel
-            Transform spawnPoint = currentLevelObject.transform.Find("SpawnPoint");
+            Transform spawnPoint = FindDeepChild(currentLevelObject.transform, "SpawnPoint");
             if (spawnPoint != null)
             {
                 player.transform.position = spawnPoint.position;
@@ -124,5 +126,18 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("Jugador o objeto de transporte no encontrado.");
         }
+    }
+
+    public Transform FindDeepChild(Transform parent, string name)
+    {
+        Transform[] allChildren = parent.GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == name)
+            {
+                return child;
+            }
+        }
+        return null;
     }
 }
