@@ -6,12 +6,12 @@ using UnityEngine;
 public class Sword : MonoBehaviour, IDamaging
 {
 
-    [SerializeField] private ParticleSystem particleFX;
     [SerializeField]private int damage;
     [SerializeField]private float soundSpeedThreshold;
     [SerializeField]private float speedThreshold;
     [SerializeField] private float atackCd;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject particleFX;
     private Rigidbody rb;
     private float currentSpeed;
     private bool invulnerable = false;
@@ -44,8 +44,6 @@ public class Sword : MonoBehaviour, IDamaging
     {
         // L�gica para cuando la espada golpea algo
         Debug.Log("�La espada ha golpeado!");
-        
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -63,9 +61,7 @@ public class Sword : MonoBehaviour, IDamaging
                     // Llama a la corrutina HitEnemy
                     StartCoroutine(HitEnemy(damageable));
                     Vector3 positionP = collision.contacts[0].point;
-                    Instantiate(particleFX,positionP,collision.transform.rotation);
-                
-                  
+                    SimplePool.Spawn(particleFX,positionP,collision.transform.rotation);
                 }
             }
         }
