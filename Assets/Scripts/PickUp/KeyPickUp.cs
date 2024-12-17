@@ -9,10 +9,8 @@ public class KeyPickup : Pickup
     {
         PlayPickupFeedback();
 
-        if (parentObj)
-            Destroy(parentObj);
-        else
-            Destroy(gameObject);
+        GameObject target = parentObj ? parentObj : gameObject;
+        Destroy(target);
 
         byPlayer.AddToInventory("key");
     }

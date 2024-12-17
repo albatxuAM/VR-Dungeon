@@ -9,6 +9,9 @@ public class HealthPickup : Pickup
     [Tooltip("GameObject ref to delete when destroy")]
     public GameObject parentObj;
 
+    [Tooltip("Destroy obj when destroyed")]
+    public bool destroyable = true;
+
     protected override void OnPicked(InventoryManager player)
     {
         PlayerBasics playerHealth = player.GetComponent<PlayerBasics>();
@@ -16,11 +19,14 @@ public class HealthPickup : Pickup
         {
             playerHealth.Heal(HealAmount);
             PlayPickupFeedback();
-            //Destroy(gameObject);
-            if (parentObj)
-                Destroy(parentObj);
+
+            // Referencia al objeto objetivo (parentObj o el propio gameObject)
+            GameObject target = parentObj ? parentObj : gameObject;
+
+            if (destroyable)
+                Destroy(target);
             else
-                Destroy(gameObject);
+                target.SetActive(false);
         }
     }
 }

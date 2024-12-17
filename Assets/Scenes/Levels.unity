@@ -739,6 +739,12 @@ PrefabInstance:
       addedObject: {fileID: 1756261125}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab7c7e112eae554da5178317268157c, type: 3}
+--- !u!1 &293981820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 663308701704905404, guid: dab7c7e112eae554da5178317268157c,
+    type: 3}
+  m_PrefabInstance: {fileID: 293981819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &354408371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,6 +3823,7 @@ MonoBehaviour:
   winLevelName: MainMenu
   transportObject: {fileID: 646810798}
   transportDuration: 5
+  healthPickup: {fileID: 293981820}
 --- !u!4 &1853112189
 Transform:
   m_ObjectHideFlags: 0
