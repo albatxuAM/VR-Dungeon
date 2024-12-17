@@ -95,9 +95,8 @@ public class LevelManager : MonoBehaviour
     // Corutina para transportar al jugador
     private IEnumerator TransportToNextLevel()
     {
-        // Transportar al jugador al objeto de transporte
         Debug.Log("Transportando al jugador...");
-        GameObject player = GameObject.FindWithTag("Player"); // Asumimos que el jugador tiene la etiqueta "Player"
+        GameObject player = GameObject.FindWithTag("Player");
 
         // Reactivar el objeto de salud antes del transporte
         if (healthPickup != null && !healthPickup.activeSelf)
@@ -107,10 +106,24 @@ public class LevelManager : MonoBehaviour
 
         if (player != null && transportObject != null)
         {
+            // Mostrar el HUD del Stopwatch
+            HUDManager.Instance.ShowStopwatch();
+
+            // Actualizar posición del jugador al objeto de transporte
             player.transform.position = transportObject.transform.position;
 
-            // Esperar el tiempo de transporte
-            yield return new WaitForSeconds(transportDuration);
+            // Cuenta regresiva del transporte
+            float timer = transportDuration;
+            while (timer > 0)
+            {
+                // Actualizar HUD con el tiempo restante
+                HUDManager.Instance.UpdateCountdown(timer);
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+
+            // Ocultar el HUD del Stopwatch cuando termine la cuenta regresiva
+            HUDManager.Instance.HideStopwatch();
 
             // Eliminar el nivel anterior
             Destroy(currentLevelObject);
