@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerBasics : MonoBehaviour, IDamageable
 {
 
-    [SerializeField]public int maxHealth;
+    [SerializeField] public int maxHealth;
     private int currentHealth;
+
+    public bool CanPickup() => currentHealth < maxHealth;
 
     void Update()
     {
@@ -35,5 +35,19 @@ public class PlayerBasics : MonoBehaviour, IDamageable
     {
         Debug.Log("Te has muerto");
         SceneManager.LoadScene(2);
+    }
+
+    public void Heal(int healAmount)
+    {
+        int healthBefore = currentHealth;
+        currentHealth += healAmount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        // call OnHeal action
+        float trueHealAmount = currentHealth - healthBefore;
+        if (trueHealAmount > 0f)
+        {
+            //OnHealed?.Invoke(trueHealAmount);
+        }
     }
 }

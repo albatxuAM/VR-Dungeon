@@ -22,6 +22,8 @@ public class LevelManager : MonoBehaviour
     [Tooltip("Tiempo que el jugador permanecerá en el objeto de transporte antes de ser teletransportado")]
     public float transportDuration = 2f;
 
+    public GameObject healthPickup;
+
     private void Awake()
     {
         // Asegurar que solo haya una instancia del LevelManager
@@ -96,6 +98,12 @@ public class LevelManager : MonoBehaviour
         // Transportar al jugador al objeto de transporte
         Debug.Log("Transportando al jugador...");
         GameObject player = GameObject.FindWithTag("Player"); // Asumimos que el jugador tiene la etiqueta "Player"
+
+        // Reactivar el objeto de salud antes del transporte
+        if (healthPickup != null && !healthPickup.activeSelf)
+        {
+            healthPickup.SetActive(true);
+        }
 
         if (player != null && transportObject != null)
         {
