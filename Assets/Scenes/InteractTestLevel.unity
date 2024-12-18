@@ -478,7 +478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenVersionPrefab: {fileID: 8131177419283281839, guid: 370ff53a71721324795e6564db3f4f62,
     type: 3}
-  breakParticles: {fileID: 0}
+  breakParticles: {fileID: 7777718834539426858, guid: 70d1218f880d93340a67d5d8abf515b3,
+    type: 3}
   breakHeight: 2
 --- !u!114 &360668006
 MonoBehaviour:
@@ -3437,7 +3438,7 @@ Transform:
   m_GameObject: {fileID: 6171399029330782625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.117, y: 0.47, z: 4.609}
+  m_LocalPosition: {x: 9.452455, y: 0.47, z: 4.609}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
