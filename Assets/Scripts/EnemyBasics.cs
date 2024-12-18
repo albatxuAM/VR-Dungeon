@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -153,5 +154,10 @@ public class EnemyBasics : MonoBehaviour, IDamageable
         invulnerable = false;
 
         player = playerSave;
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

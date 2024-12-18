@@ -78,4 +78,10 @@ public class Sword : MonoBehaviour, IDamaging
 
         invulnerable = false;
     }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
 }

@@ -1,12 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerBasics : MonoBehaviour, IDamageable
 {
 
     [SerializeField] public int maxHealth;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private GameObject hurtTunneling;
     private int currentHealth;
+
 
     public bool CanPickup() => currentHealth < maxHealth;
 
@@ -33,15 +39,28 @@ public class PlayerBasics : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        StartCoroutine(HitAnim());
         Debug.Log("Te has hecho daño. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0) Invoke(nameof(Muerte), 0f);
+    }
+
+    IEnumerator HitAnim()
+    {
+        hurtTunneling.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        hurtTunneling.SetActive(false);
     }
 
     private void Muerte()
     {
         Debug.Log("Te has muerto");
         SceneManager.LoadScene(2);
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 
     public void Heal(int healAmount)

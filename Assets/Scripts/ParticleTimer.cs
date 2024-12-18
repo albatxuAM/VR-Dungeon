@@ -15,4 +15,9 @@ public class ParticleTimer : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SimplePool.Despawn(gameObject);
     }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }
