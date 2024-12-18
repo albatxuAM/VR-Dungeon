@@ -270,10 +270,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1001862010721696800, guid: dab7c7e112eae554da5178317268157c,
+    - target: {fileID: 663308701704905404, guid: dab7c7e112eae554da5178317268157c,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001862010721696800, guid: dab7c7e112eae554da5178317268157c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1604756278799622143, guid: dab7c7e112eae554da5178317268157c,
         type: 3}
@@ -686,8 +691,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrefabs:
-  - {fileID: 6967124115002237415, guid: 382a4697a77258a468aabcdedf228fcc, type: 3}
-  - {fileID: 1026572981406861150, guid: e06c6497109749e459f22985c2bb6bfe, type: 3}
+  - {fileID: 3961317630468386430, guid: 25dc6be86af01fd48b181c676a323ac7, type: 3}
+  - {fileID: 3774306472450029380, guid: 16108486e05b4634ab6c21e6a866b669, type: 3}
+  - {fileID: 8238942136560131175, guid: 382a4697a77258a468aabcdedf228fcc, type: 3}
   winLevelName: MainMenu
   transportObject: {fileID: 646810798}
   transportDuration: 5
@@ -719,9 +725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26adf2b0521ea65448d8f64feebac409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopwatchPanel: {fileID: 293981822}
-  countdownText: {fileID: 293981821}
-  showDecimals: 0
+  stopwatchPanel: {fileID: 1782699653}
+  countdownText: {fileID: 1782699652}
+  showDecimals: 1
 --- !u!114 &1983684173 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6688015753839463788, guid: 895f6f3c2d334633b5800312285058d2,

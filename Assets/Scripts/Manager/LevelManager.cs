@@ -53,7 +53,8 @@ public class LevelManager : MonoBehaviour
         // Verificar si hemos llegado al último nivel
         if (currentLevelIndex < levelPrefabs.Length)
         {
-            StartCoroutine(TransportToNextLevel());  // Usar corutina para manejar el transporte
+            // Usar corutina para manejar el transporte
+            StartCoroutine(TransportToNextLevel());
         }
         else
         {
@@ -107,7 +108,7 @@ public class LevelManager : MonoBehaviour
         if (player != null && transportObject != null)
         {
             // Mostrar el HUD del Stopwatch
-            HUDManager.Instance.ShowStopwatch();
+            ////HUDManager.Instance.ShowStopwatch();
 
             // Actualizar posición del jugador al objeto de transporte
             player.transform.position = transportObject.transform.position;
@@ -117,13 +118,13 @@ public class LevelManager : MonoBehaviour
             while (timer > 0)
             {
                 // Actualizar HUD con el tiempo restante
-                HUDManager.Instance.UpdateCountdown(timer);
+                ////HUDManager.Instance.UpdateCountdown(timer);
                 timer -= Time.deltaTime;
                 yield return null;
             }
 
             // Ocultar el HUD del Stopwatch cuando termine la cuenta regresiva
-            HUDManager.Instance.HideStopwatch();
+            ////HUDManager.Instance.HideStopwatch();
 
             // Eliminar el nivel anterior
             Destroy(currentLevelObject);
@@ -135,7 +136,16 @@ public class LevelManager : MonoBehaviour
             Transform spawnPoint = FindDeepChild(currentLevelObject.transform, "SpawnPoint");
             if (spawnPoint != null)
             {
+                // Mover al jugador al SpawnPoint
                 player.transform.position = spawnPoint.position;
+
+                // Hacer al jugador hijo del SpawnPoint
+                player.transform.SetParent(spawnPoint);
+
+                // Asegurarse de que la escala y rotación del jugador no se vea afectada por el SpawnPoint
+                player.transform.localRotation = Quaternion.identity;
+                player.transform.localScale = Vector3.one;
+
                 Debug.Log("Jugador teletransportado al nuevo spawn.");
             }
             else

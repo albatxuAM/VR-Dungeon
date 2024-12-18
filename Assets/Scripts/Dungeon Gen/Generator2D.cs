@@ -660,34 +660,39 @@ public class Generator2D : MonoBehaviour
     }
     private void PlacePlayer()
     {
-        // Verificar si el prefab del jugador está definido
-        if (config.playerPrefab == null)
-        {
-            Debug.LogWarning("Player prefab is null. Cannot place player.");
-            return;
-        }
-
-        // Verificar si la habitación más pequeña está definida
-        if (smallestRoom == null)
-        {
-            Debug.LogWarning("Smallest room is not defined. Cannot place player.");
-            return;
-        }
-
         // Calcular el centro de la habitación más pequeña
         Vector2Int center = new Vector2Int(
             smallestRoom.bounds.x + smallestRoom.bounds.width / 2 - 1,
             smallestRoom.bounds.y + smallestRoom.bounds.height / 2 - 1
         );
 
-        // Instanciar al jugador en el centro de la habitación más pequeña
-        Instantiate(config.playerPrefab, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
+        // Verificar si el prefab del jugador está definido
+        if (config.playerPrefab == null)
+        {
+            Debug.LogWarning("Player prefab is null. Cannot place player.");
+            //return;
+        }
+        else
+        {
+            // Instanciar al jugador en el centro de la habitación más pequeña
+            Instantiate(config.playerPrefab, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
+        }
 
-        // Instanciamos el objeto
-        GameObject instantiatedExitArea = Instantiate(config.exitArea, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
-        instantiatedExitArea.transform.localScale = new Vector3(config.roomMinSize.x, 2, config.roomMinSize.y);
+        // Verificar si la habitación más pequeña está definida
+        if (smallestRoom == null)
+        {
+            Debug.LogWarning("Smallest room is not defined. Cannot place player.");
+            //return;
+        }
+        else
+        {
 
-        Debug.Log($"Player placed at room center: {center}");
+            // Instanciamos el objeto
+            GameObject instantiatedExitArea = Instantiate(config.exitArea, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
+            instantiatedExitArea.transform.localScale = new Vector3(config.roomMinSize.x, 2, config.roomMinSize.y);
+
+            Debug.Log($"Player placed at room center: {center}");
+        }
     }
 
     void PlaceCube(Vector2Int location, Vector2Int size, Material material, int locationY = 0)
