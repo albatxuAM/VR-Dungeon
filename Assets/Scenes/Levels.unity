@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 781961217483259746, guid: dab7c7e112eae554da5178317268157c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.187
+      objectReference: {fileID: 0}
     - target: {fileID: 1001862010721696800, guid: dab7c7e112eae554da5178317268157c,
         type: 3}
       propertyPath: m_IsActive
@@ -725,9 +730,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26adf2b0521ea65448d8f64feebac409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopwatchPanel: {fileID: 1782699653}
-  countdownText: {fileID: 1782699652}
-  showDecimals: 1
+  stopwatchPanel: {fileID: 293981822}
+  countdownText: {fileID: 293981821}
+  showDecimals: 0
 --- !u!114 &1983684173 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6688015753839463788, guid: 895f6f3c2d334633b5800312285058d2,

@@ -686,10 +686,15 @@ public class Generator2D : MonoBehaviour
         }
         else
         {
-
             // Instanciamos el objeto
             GameObject instantiatedExitArea = Instantiate(config.exitArea, new Vector3(center.x, 0.5f, center.y) * config.mapMultiplier, Quaternion.identity);
-            instantiatedExitArea.transform.localScale = new Vector3(config.roomMinSize.x, 2, config.roomMinSize.y);
+            //instantiatedExitArea.transform.localScale = new Vector3(config.roomMinSize.x, 2, config.roomMinSize.y);
+            BoxCollider boxCollider = instantiatedExitArea.GetComponent<BoxCollider>();
+            if (boxCollider != null)
+            {
+                // Cambia el tamaño del collider
+                boxCollider.size = new Vector3(config.roomMinSize.x, 2, config.roomMinSize.y);
+            }
 
             Debug.Log($"Player placed at room center: {center}");
         }

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 
+[DefaultExecutionOrder(-10)]
 public class HUDManager : MonoBehaviour
 {
     [Header("Stopwatch UI Elements")]

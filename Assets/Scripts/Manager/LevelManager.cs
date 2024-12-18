@@ -108,7 +108,7 @@ public class LevelManager : MonoBehaviour
         if (player != null && transportObject != null)
         {
             // Mostrar el HUD del Stopwatch
-            ////HUDManager.Instance.ShowStopwatch();
+            HUDManager.Instance.ShowStopwatch();
 
             // Actualizar posición del jugador al objeto de transporte
             player.transform.position = transportObject.transform.position;
@@ -118,13 +118,13 @@ public class LevelManager : MonoBehaviour
             while (timer > 0)
             {
                 // Actualizar HUD con el tiempo restante
-                ////HUDManager.Instance.UpdateCountdown(timer);
+                HUDManager.Instance.UpdateCountdown(timer);
                 timer -= Time.deltaTime;
                 yield return null;
             }
 
             // Ocultar el HUD del Stopwatch cuando termine la cuenta regresiva
-            ////HUDManager.Instance.HideStopwatch();
+            HUDManager.Instance.HideStopwatch();
 
             // Eliminar el nivel anterior
             Destroy(currentLevelObject);
