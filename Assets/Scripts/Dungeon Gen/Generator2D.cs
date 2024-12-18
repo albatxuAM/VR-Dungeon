@@ -51,6 +51,9 @@ public class Generator2D : MonoBehaviour
 
     GameObject mapObject;
     Transform parentTransform;
+    Transform floorTransform;
+    Transform ceilingTransform;
+    Transform lightsTransform;
 
     Random random;
     Grid2D<CellType> grid;
@@ -66,6 +69,25 @@ public class Generator2D : MonoBehaviour
 
         parentTransform = mapObject.transform;
         //parentTransform.localScale = new Vector3(mapMultiplier, mapMultiplier, mapMultiplier);
+
+        // Crear y configurar el Transform de Floors
+        GameObject floorObject = new GameObject("Floors");
+        floorTransform = floorObject.transform;
+        floorTransform.parent = parentTransform;
+        floorTransform.localPosition = Vector3.zero;
+
+        // Crear y configurar el Transform de Ceilings
+        GameObject ceilingObject = new GameObject("Ceilings");
+        ceilingTransform = ceilingObject.transform;
+        ceilingTransform.parent = parentTransform;
+        ceilingTransform.localPosition = Vector3.zero;
+
+        // Crear y configurar el Transform de Lights
+        GameObject lightsObject = new GameObject("Lights");
+        lightsTransform = lightsObject.transform;
+        lightsTransform.parent = parentTransform;
+        lightsTransform.localPosition = Vector3.zero;
+
 
         // Optionally, you can call a method to generate the map (if needed)
         Generate();
@@ -110,45 +132,6 @@ public class Generator2D : MonoBehaviour
 
         // Bake the NavMesh for this surface
         navMeshSurface.BuildNavMesh();
-    }
-
-    private void PlaceNavMesh4Room()
-    {
-        foreach (var room in rooms)
-        {
-            // Create an empty GameObject at the room's position
-            GameObject roomObj = new GameObject($"NavMesh_{room.bounds.position.x}_{room.bounds.position.y}");
-            roomObj.transform.SetParent(parentTransform);
-
-            // Set the position of the empty GameObject to the center of the room
-            roomObj.transform.position = new Vector3(room.bounds.x + room.bounds.width / 2, 0, room.bounds.y + room.bounds.height / 2);
-
-            // Instanciar las losas del piso dentro de la habitación
-            for (int y = room.bounds.y; y < room.bounds.y + room.bounds.height; y++)
-            {
-                for (int x = room.bounds.x; x < room.bounds.x + room.bounds.width; x++)
-                {
-                    Vector2Int pos = new Vector2Int(x, y);
-
-                    if (grid[pos] == CellType.Room || grid[pos] == CellType.Door)
-                    {
-                        // Instanciar el prefab de la losa del piso en la posición (x, y) dentro del padre
-                        Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, roomObj.transform);
-                    }
-                }
-            }
-
-            // Add a NavMeshSurface component to this GameObject
-            NavMeshSurface navMeshSurface = roomObj.AddComponent<NavMeshSurface>();
-
-            // Set the size of the NavMeshSurface based on the room's size
-            navMeshSurface.size = new Vector3(room.bounds.width + 1, 0, room.bounds.height + 1);
-
-            navMeshSurface.layerMask = LayerMask.GetMask("Floor", "Wall");
-
-            // Bake the NavMesh for this surface
-            navMeshSurface.BuildNavMesh();
-        }
     }
 
     void PlaceRooms()
@@ -440,23 +423,23 @@ public class Generator2D : MonoBehaviour
 
                 if (grid[pos] == CellType.Room || grid[pos] == CellType.Hallway)
                 {
-                    Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
+                    Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, floorTransform);
 
                     // Si generateCeilling está activo, generar un techo
                     if (config.generateCeiling)
                     {
                         // Crear el techo con orientación hacia abajo
-                        Instantiate(config.ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
+                        Instantiate(config.ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), ceilingTransform);
                     }
                 }
                 else if (grid[pos] == CellType.Door)
                 {
-                    Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, parentTransform);
+                    Instantiate(config.floorTilePrefab, new Vector3(x, 0, y), Quaternion.identity, floorTransform);
 
                     // Si generateCeilling está activo, generar un techo
                     if (config.generateCeiling)
                     {
-                        Instantiate(config.ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), parentTransform);
+                        Instantiate(config.ceilingTilePrefab, new Vector3(x, 1.5f, y), Quaternion.Euler(180, 0, 0), ceilingTransform);
                     }
 
                     PlaceDoorWithOrientation(pos);
@@ -532,9 +515,9 @@ public class Generator2D : MonoBehaviour
                     Instantiate(config.wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
                     if (pos.x % 2 == 0)
-                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, lightsTransform);
                     else if (pos.y % 2 == 0)
-                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, lightsTransform);
                 }
             }
             return;
@@ -568,9 +551,9 @@ public class Generator2D : MonoBehaviour
             Instantiate(config.wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
             if (pos.x % 2 == 0)
-                Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, lightsTransform);
             else if (pos.y % 2 == 0)
-                Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, lightsTransform);
 
             return;
         }
@@ -589,9 +572,9 @@ public class Generator2D : MonoBehaviour
                     Instantiate(config.wallPrefab, new Vector3(pos.x + direction.x * 0.5f, 0, pos.y + direction.z * 0.5f), rotation, parentTransform);
 
                     if (pos.x % 2 == 0)
-                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, lightsTransform);
                     else if (pos.y % 2 == 0)
-                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, parentTransform);
+                        Instantiate(config.lampPrefab, new Vector3(pos.x + direction.x * 0.5f, 1.25f, pos.y + direction.z * 0.5f), rotation, lightsTransform);
                 }
             }
             return;

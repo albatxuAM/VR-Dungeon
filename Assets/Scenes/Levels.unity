@@ -318,12 +318,12 @@ PrefabInstance:
     - target: {fileID: 6338149968370607743, guid: dab7c7e112eae554da5178317268157c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6338149968370607743, guid: dab7c7e112eae554da5178317268157c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6338149968370607743, guid: dab7c7e112eae554da5178317268157c,
         type: 3}
@@ -696,9 +696,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrefabs:
-  - {fileID: 3961317630468386430, guid: 25dc6be86af01fd48b181c676a323ac7, type: 3}
-  - {fileID: 3774306472450029380, guid: 16108486e05b4634ab6c21e6a866b669, type: 3}
-  - {fileID: 8238942136560131175, guid: 382a4697a77258a468aabcdedf228fcc, type: 3}
+  - {fileID: 2290767078587359667, guid: 72ecba779cc3a954fb42fccde6175958, type: 3}
+  - {fileID: 6108015321408149763, guid: 3d49c5631db612a4aad83ddaeef1cb1e, type: 3}
+  - {fileID: 2533361525931799827, guid: a4e6b1fdd63cdb949a7287f1cc9d3010, type: 3}
+  - {fileID: 2397479791946740372, guid: 0aa67d650bed26b45ae52265ef7db92e, type: 3}
   winLevelName: MainMenu
   transportObject: {fileID: 646810798}
   transportDuration: 5
