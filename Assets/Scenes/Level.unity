@@ -2904,12 +2904,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 868119909}
   m_SourcePrefab: {fileID: 100100000, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
---- !u!1 &2064831776 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5660119669279734746, guid: 47f6a2919460f45408ad28b8f09cfb7f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8401355132934343153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2145372669
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,11 +3793,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6975226341983342742, guid: 47f6a2919460f45408ad28b8f09cfb7f,
-        type: 3}
-      propertyPath: hurtTunneling
-      value: 
-      objectReference: {fileID: 2064831776}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
