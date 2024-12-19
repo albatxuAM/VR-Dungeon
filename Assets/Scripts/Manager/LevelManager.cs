@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     [Tooltip("Escena de victoria que se cargará al completar el último nivel")]
     public string winLevelName;
 
-    private int currentLevelIndex = 0;  // Índice del nivel actual
+    private int currentLevelIndex = -1;  // Índice del nivel actual
     private GameObject currentLevelObject;  // Para mantener una referencia al nivel instanciado
 
     [Tooltip("Objeto al que el jugador será transportado antes de ser teletransportado al nuevo spawn")]

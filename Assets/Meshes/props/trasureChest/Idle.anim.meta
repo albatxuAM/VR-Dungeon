@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Meshes/props/bones.meta
-guid: 9ba4535a6e73da94ea05706077610c91
-folderAsset: yes
-DefaultImporter:
-  externalObjects: {}
-========
-guid: 1f2a3c5b9560bd0469730aabdabfd2ca
+<<<<<<<< HEAD:Assets/Meshes/props/trasureChest/Idle.anim.meta
+guid: f08ce277141e60147a2bb722c82bd0ff
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
->>>>>>>> origin/develop:Assets/Meshes/props/trasureChest/Idle.anim.meta
+========
+guid: 65cd98b12aa314547917e5141765ea62
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+>>>>>>>> origin/mapa/5_Alex:Assets/Meshes/props/bones/skull.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
