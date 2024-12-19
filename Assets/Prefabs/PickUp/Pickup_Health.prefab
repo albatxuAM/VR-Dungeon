@@ -122,6 +122,8 @@ MonoBehaviour:
   PickupVfxPrefab: {fileID: 18133231791472539, guid: e44fc97440f45e946a0bdbdd460acfb9,
     type: 3}
   HealAmount: 20
+  parentObj: {fileID: 0}
+  destroyable: 1
 --- !u!1 &7296493021711450243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4932,7 +4934,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a0798aa25b2a35247b262820a588a364, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5002,7 +5003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6937867885679790262
 Transform:
   m_ObjectHideFlags: 0
@@ -5208,7 +5209,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
+      maxColor: {r: 0.646529, g: 0.9496855, b: 0.5704085, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9851,7 +9852,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
