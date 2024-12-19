@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Meshes/props/trasureChest.meta
+guid: ade0d17abbf3d144b9ebcfe0e3f8b3b2
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+========
+guid: 65cd98b12aa314547917e5141765ea62
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+>>>>>>>> origin/mapa/5_Alex:Assets/Meshes/props/bones/skull.mat.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

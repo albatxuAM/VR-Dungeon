@@ -188,8 +188,70 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5995077527409176199}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 950896094822525857, guid: 5870ab8b28e8a444d9b1048f98d6aa04,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6330894108207280673}
+    - targetCorrespondingSourceObject: {fileID: 950896094822525857, guid: 5870ab8b28e8a444d9b1048f98d6aa04,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4278798372001200454}
   m_SourcePrefab: {fileID: 100100000, guid: 5870ab8b28e8a444d9b1048f98d6aa04, type: 3}
+--- !u!1 &2557405839226303572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 950896094822525857, guid: 5870ab8b28e8a444d9b1048f98d6aa04,
+    type: 3}
+  m_PrefabInstance: {fileID: 3337160702914994165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &-6330894108207280673
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557405839226303572}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-4278798372001200454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557405839226303572}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.020000005, z: 0.037687056}
+  m_Center: {x: 0, y: 0, z: 0.017756633}
 --- !u!4 &2897621759075790574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 466564948777218331, guid: 5870ab8b28e8a444d9b1048f98d6aa04,
