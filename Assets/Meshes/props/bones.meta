@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Meshes/props/bones.meta
 guid: 53494f35f8a19124ba78fd06b2bab26d
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
+========
+guid: 1f2a3c5b9560bd0469730aabdabfd2ca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+>>>>>>>> origin/develop:Assets/Meshes/props/trasureChest/Idle.anim.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   agent: {fileID: 2589632071933472227}
-  player: {fileID: 0}
+  player: {fileID: 2077346306197769823, guid: 47f6a2919460f45408ad28b8f09cfb7f, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
