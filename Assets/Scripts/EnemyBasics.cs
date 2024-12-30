@@ -1,37 +1,32 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class EnemyBasics : MonoBehaviour, IDamageable
 {
 
     //Vida
-    [SerializeField]private int health;
+    [SerializeField] private int health;
     private int currentHealth;
 
     //NavAgent
-    [SerializeField]private NavMeshAgent agent;
-    [SerializeField]public Transform player;
-    [SerializeField]public LayerMask whatIsGround, whatIsWall, whatIsPlayer;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] public Transform player;
+    [SerializeField] public LayerMask whatIsGround, whatIsWall, whatIsPlayer;
 
     //Patrullaje
     private Vector3 walkPoint;
     private bool walkPointSet;
-    [SerializeField]private float walkPointRange;
+    [SerializeField] private float walkPointRange;
 
     //Estados
-    [SerializeField]private float sightRange;
+    [SerializeField] private float sightRange;
     public bool playerInSightRange;
 
     //Sistema de ataque
-    [SerializeField]private int damage;
-    [SerializeField]private float atackCd;
+    [SerializeField] private int damage;
+    [SerializeField] private float atackCd;
     private bool invulnerable = false;
 
     private Rigidbody rb;
@@ -42,6 +37,15 @@ public class EnemyBasics : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         currentHealth = health;
         agent = GetComponent<NavMeshAgent>();
+
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+        }
     }
 
     private void Update()
@@ -58,11 +62,11 @@ public class EnemyBasics : MonoBehaviour, IDamageable
         currentHealth -= damage;
         Debug.Log("Enemigo golpeado. Vida restante: " + currentHealth);
 
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             rb.useGravity = true;
-            
-            
+
+
             Invoke(nameof(DestroyEnemy), 3f);
         }
     }
