@@ -4,6 +4,7 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour
 {
     public GameObject brokenVersionPrefab;
+    [Range(0f, 1f)]
     public float breakProbability = 0.25f;
 
     public GameObject breakParticles;
@@ -54,7 +55,7 @@ public class BreakableObject : MonoBehaviour
         // Comprobamos si el número aleatorio es menor o igual que la probabilidad de generar
         if (randomValue <= breakProbability)
         {
-            Instantiate(brokenVersionPrefab, transform.position, transform.rotation);
+            Instantiate(brokenVersionPrefab, transform.position, Quaternion.identity);
         }
         Instantiate(breakParticles, transform.position, transform.rotation);
         Destroy(gameObject); // Destruir el objeto original
