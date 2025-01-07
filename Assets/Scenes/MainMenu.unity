@@ -467,7 +467,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 911602513}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -754,11 +754,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 911602517}
   m_OriginBaseGameObject: {fileID: 175635445}
-  m_CameraFloorOffsetObject: {fileID: 0}
+  m_CameraFloorOffsetObject: {fileID: 274471039}
   m_RequestedTrackingOriginMode: 1
-  m_CameraYOffset: -1.2
+  m_CameraYOffset: -1
 --- !u!4 &175635454
 Transform:
   m_ObjectHideFlags: 0
@@ -1794,6 +1794,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141563205650883282, guid: efa5cbc8c2789ca428fbddd0fac26942,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9987379
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141563205650883282, guid: efa5cbc8c2789ca428fbddd0fac26942,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141563205650883282, guid: efa5cbc8c2789ca428fbddd0fac26942,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9974756
       objectReference: {fileID: 0}
     - target: {fileID: 8967197739532100855, guid: efa5cbc8c2789ca428fbddd0fac26942,
         type: 3}
@@ -3109,7 +3124,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 911602513}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -3499,7 +3514,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dungeon algo
+  m_text: Echoes of eternity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
