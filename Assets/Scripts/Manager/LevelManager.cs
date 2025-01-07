@@ -20,9 +20,13 @@ public class LevelManager : MonoBehaviour
     public GameObject transportObject;
 
     [Tooltip("Tiempo que el jugador permanecerá en el objeto de transporte antes de ser teletransportado")]
-    public float transportDuration = 2f;
+    public float transportDuration = 5f;
 
     public GameObject healthPickup;
+
+    public Transform ElevatorPlace;
+    public GameObject Elevator;
+    private GameObject player;
 
     private void Awake()
     {
@@ -37,12 +41,19 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);  // Eliminar instancias adicionales
         }
 
-        NextLevel();
+        //NextLevel();
+
+        //player = GameObject.FindWithTag("Player");
+        //healthPickup.SetActive(false);
     }
 
     private void Start()
     {
-        LoadLevel(currentLevelIndex);  // Cargar el primer nivel al inicio
+        player = GameObject.FindWithTag("Player");
+
+        NextLevel();
+
+        healthPickup.SetActive(false);
     }
 
     // Función para cargar el siguiente nivel
@@ -93,8 +104,76 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Corutina para transportar al jugador
     private IEnumerator TransportToNextLevel()
+    {
+        Debug.Log("Transportando al jugador...");
+
+
+        // Reactivar el objeto de salud antes del transporte
+        if (healthPickup != null && !healthPickup.activeSelf)
+        {
+            healthPickup.SetActive(true);
+        }
+
+        if (player != null && transportObject != null)
+        {
+            // Mostrar el HUD del Stopwatch
+            HUDManager.Instance.ShowStopwatch();
+
+            // Actualizar posición del jugador al objeto de transporte
+            player.transform.position = transportObject.transform.position;
+
+            // Actualizar posición del jugador al objeto de transporte
+            Elevator.transform.position = ElevatorPlace.transform.position;
+
+            // Cuenta regresiva del transporte
+            float timer = transportDuration;
+            while (timer > 0)
+            {
+                // Actualizar HUD con el tiempo restante
+                HUDManager.Instance.UpdateCountdown(timer);
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+
+            // Ocultar el HUD del Stopwatch cuando termine la cuenta regresiva
+            HUDManager.Instance.HideStopwatch();
+
+            // Eliminar el nivel anterior
+            Destroy(currentLevelObject);
+
+            // Instanciar el nuevo nivel
+            LoadLevel(currentLevelIndex);
+
+            // Teletransportar al jugador al spawnPoint del nuevo nivel
+            Transform spawnPoint = FindDeepChild(currentLevelObject.transform, "SpawnPoint");
+            if (spawnPoint != null)
+            {
+                // Mover al jugador al SpawnPoint
+                Elevator.transform.position = spawnPoint.position;
+
+                // Hacer al jugador hijo del SpawnPoint
+                Elevator.transform.SetParent(spawnPoint);
+
+                // Asegurarse de que la escala y rotación del jugador no se vea afectada por el SpawnPoint
+                Elevator.transform.localRotation = Quaternion.identity;
+                Elevator.transform.localScale = Vector3.one;
+
+                Debug.Log("Jugador teletransportado al nuevo spawn.");
+            }
+            else
+            {
+                Debug.LogError("No se encontró el SpawnPoint en el nuevo nivel.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Jugador o objeto de transporte no encontrado.");
+        }
+    }
+
+    // Corutina para transportar al jugador
+    private IEnumerator TransportToNextLevel1_()
     {
         Debug.Log("Transportando al jugador...");
         GameObject player = GameObject.FindWithTag("Player");
