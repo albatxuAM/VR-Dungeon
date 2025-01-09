@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     public float transportDuration = 2f;
 
     public GameObject healthPickup;
+    private GameObject player;
 
     private void Awake()
     {
@@ -37,12 +38,16 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);  // Eliminar instancias adicionales
         }
 
-        NextLevel();
+        //NextLevel();
     }
 
     private void Start()
     {
-        LoadLevel(currentLevelIndex);  // Cargar el primer nivel al inicio
+        player = GameObject.FindWithTag("Player");
+
+        NextLevel();
+
+        healthPickup.SetActive(false);
     }
 
     // Función para cargar el siguiente nivel
@@ -97,7 +102,6 @@ public class LevelManager : MonoBehaviour
     private IEnumerator TransportToNextLevel()
     {
         Debug.Log("Transportando al jugador...");
-        GameObject player = GameObject.FindWithTag("Player");
 
         // Reactivar el objeto de salud antes del transporte
         if (healthPickup != null && !healthPickup.activeSelf)

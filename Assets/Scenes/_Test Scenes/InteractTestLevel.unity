@@ -1244,10 +1244,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup_Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 2620131183356007192, guid: 571738362f250a7479e2a997975d685f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2620131183356007199, guid: 571738362f250a7479e2a997975d685f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.75
+      value: 3.93
       objectReference: {fileID: 0}
     - target: {fileID: 2620131183356007199, guid: 571738362f250a7479e2a997975d685f,
         type: 3}
@@ -1257,7 +1262,7 @@ PrefabInstance:
     - target: {fileID: 2620131183356007199, guid: 571738362f250a7479e2a997975d685f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.97
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 2620131183356007199, guid: 571738362f250a7479e2a997975d685f,
         type: 3}
@@ -1516,6 +1521,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906105094023318001, guid: 47d3d440de7cc6940a5c24b1ffa821b4,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906105094023318001, guid: 47d3d440de7cc6940a5c24b1ffa821b4,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906105094023318001, guid: 47d3d440de7cc6940a5c24b1ffa821b4,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4787007845448793542, guid: 47d3d440de7cc6940a5c24b1ffa821b4,
         type: 3}

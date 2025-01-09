@@ -28,7 +28,9 @@ public class DropingObject : MonoBehaviour
             // Comprobamos si el número aleatorio es menor o igual que la probabilidad de generar
             if (randomValue <= dropProbability)
             {
-                Instantiate(dropPrefab, transform.position, Quaternion.identity);
+                Vector3 pos = transform.position;
+                pos.y += 0.5f;
+                Instantiate(dropPrefab, pos, Quaternion.identity);
             }
         }
     }
