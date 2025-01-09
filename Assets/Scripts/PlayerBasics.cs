@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerBasics : MonoBehaviour, IDamageable
 {
@@ -14,18 +11,25 @@ public class PlayerBasics : MonoBehaviour, IDamageable
     private int currentHealth;
 
 
-    public bool CanPickup() => currentHealth < maxHealth;
+    //public bool CanPickup() => currentHealth < maxHealth;
+
+    public bool CanPickup()
+    {
+        Debug.Log("currentHealth: " + currentHealth + " maxHealth: " + maxHealth);
+        return currentHealth < maxHealth;
+    }
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log(currentHealth);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-		{
-			TakeDamage(1);
-		}
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Debug.Log(currentHealth);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    TakeDamage(1);
+        //}
     }
 
     // Start is called before the first frame update
@@ -72,11 +76,13 @@ public class PlayerBasics : MonoBehaviour, IDamageable
         currentHealth += healAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        Debug.Log("Te has curado. Vida anterior: " + healthBefore + " Vida restante: " + currentHealth);
+        healthBar.SetHealth(currentHealth);
         // call OnHeal action
-        float trueHealAmount = currentHealth - healthBefore;
-        if (trueHealAmount > 0f)
-        {
-            //OnHealed?.Invoke(trueHealAmount);
-        }
+        //float trueHealAmount = currentHealth - healthBefore;
+        //if (trueHealAmount > 0f)
+        //{
+        //    //OnHealed?.Invoke(trueHealAmount);
+        //}
     }
 }

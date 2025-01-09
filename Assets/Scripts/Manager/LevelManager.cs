@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     public float transportDuration = 2f;
 
     public GameObject healthPickup;
+    private GameObject player;
 
     private void Awake()
     {
@@ -30,19 +31,23 @@ public class LevelManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Mantener el manager entre escenas
+            //DontDestroyOnLoad(gameObject);  // Mantener el manager entre escenas
         }
         else
         {
             Destroy(gameObject);  // Eliminar instancias adicionales
         }
 
-        NextLevel();
+        //NextLevel();
     }
 
     private void Start()
     {
-        LoadLevel(currentLevelIndex);  // Cargar el primer nivel al inicio
+        player = GameObject.FindWithTag("Player");
+
+        NextLevel();
+
+        healthPickup.SetActive(false);
     }
 
     // Función para cargar el siguiente nivel
@@ -58,6 +63,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            currentLevelIndex = -1;
             // Si es el último nivel, cargar el winLevel
             LoadWinLevel();
         }
@@ -97,7 +103,6 @@ public class LevelManager : MonoBehaviour
     private IEnumerator TransportToNextLevel()
     {
         Debug.Log("Transportando al jugador...");
-        GameObject player = GameObject.FindWithTag("Player");
 
         // Reactivar el objeto de salud antes del transporte
         if (healthPickup != null && !healthPickup.activeSelf)
@@ -170,5 +175,16 @@ public class LevelManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void RestartLevel()
+    {
+        player = GameObject.FindWithTag("Player");
+
+        currentLevelIndex = -1;
+
+        NextLevel();
+
+        healthPickup.SetActive(false);
     }
 }

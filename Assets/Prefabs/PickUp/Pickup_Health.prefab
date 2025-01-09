@@ -121,7 +121,7 @@ MonoBehaviour:
   PickupSfx: {fileID: 8300000, guid: 8dfdbc346713580429db9079ad1ff964, type: 3}
   PickupVfxPrefab: {fileID: 18133231791472539, guid: e44fc97440f45e946a0bdbdd460acfb9,
     type: 3}
-  HealAmount: 20
+  HealAmount: 2
   parentObj: {fileID: 0}
   destroyable: 1
 --- !u!1 &7296493021711450243

@@ -61,6 +61,18 @@ public class BreakableObject : MonoBehaviour
         Destroy(gameObject); // Destruir el objeto original
     }
 
+    private void SpawnInside()
+    {
+        // Generamos un número aleatorio entre 0 y 1
+        float randomValue = Random.Range(0f, 1f);
+
+        // Comprobamos si el número aleatorio es menor o igual que la probabilidad de generar
+        if (randomValue <= breakProbability)
+        {
+            Instantiate(brokenVersionPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // Verificar si el objeto que colisiona implementa la interfaz IDamaging

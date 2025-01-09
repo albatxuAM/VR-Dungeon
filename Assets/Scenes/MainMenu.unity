@@ -533,6 +533,7 @@ GameObject:
   - component: {fileID: 175635449}
   - component: {fileID: 175635448}
   - component: {fileID: 175635446}
+  - component: {fileID: 175635455}
   m_Layer: 7
   m_Name: (Player) XR Origin (XR Rig)
   m_TagString: Untagged
@@ -746,7 +747,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 175635445}
   m_CameraFloorOffsetObject: {fileID: 274471039}
   m_RequestedTrackingOriginMode: 1
-  m_CameraYOffset: 0
+  m_CameraYOffset: -1
 --- !u!4 &175635454
 Transform:
   m_ObjectHideFlags: 0
@@ -763,6 +764,48 @@ Transform:
   - {fileID: 274471040}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175635455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175635445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9f82377aeb9704193bd866d119aaa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenFade: 0
+  eyeTracking: 0
+  trackingMode: -1
+  sharpeningMode: 0
+  sharpeningEnhance: 0
+  faceTracking: 0
+  lipsyncTracking: 0
+  lateLatching: 0
+  latelatchingDebug: 0
+  bodyTracking: 0
+  foveationLevel: -1
+  adaptiveResolution: 0
+  eyeFoveationLevel: -1
+  foveatedRenderingMode: 0
+  openMRC: 1
+  foregroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  backgroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  backgroundCamObj: {fileID: 0}
+  foregroundCamObj: {fileID: 0}
+  mrcBackgroundRT: {fileID: 0}
+  mrcForegroundRT: {fileID: 0}
+  adaptiveResolutionPowerSetting: 1
+  minEyeTextureScale: 0.7
+  maxEyeTextureScale: 1.26
+  enableSuperResolution: 0
+  useRecommendedAntiAliasingLevel: 1
 --- !u!1 &274471039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3112,9 +3155,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 911602513}
+      - m_Target: {fileID: 911602511}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

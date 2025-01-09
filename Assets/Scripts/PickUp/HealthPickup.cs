@@ -15,18 +15,19 @@ public class HealthPickup : Pickup
     protected override void OnPicked(InventoryManager player)
     {
         PlayerBasics playerHealth = player.GetComponent<PlayerBasics>();
-        if (playerHealth && playerHealth.CanPickup())
-        {
-            playerHealth.Heal(HealAmount);
-            PlayPickupFeedback();
+        if (playerHealth)
+            if (playerHealth.CanPickup())
+            {
+                playerHealth.Heal(HealAmount);
+                PlayPickupFeedback();
 
-            // Referencia al objeto objetivo (parentObj o el propio gameObject)
-            GameObject target = parentObj ? parentObj : gameObject;
+                // Referencia al objeto objetivo (parentObj o el propio gameObject)
+                GameObject target = parentObj ? parentObj : gameObject;
 
-            if (destroyable)
-                Destroy(target);
-            else
-                target.SetActive(false);
-        }
+                if (destroyable)
+                    Destroy(target);
+                else
+                    target.SetActive(false);
+            }
     }
 }
