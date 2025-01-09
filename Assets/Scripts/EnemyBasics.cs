@@ -67,7 +67,7 @@ public class EnemyBasics : MonoBehaviour, IDamageable
             rb.useGravity = true;
 
 
-            Invoke(nameof(DestroyEnemy), 3f);
+            Invoke(nameof(DestroyEnemy), 0f);
         }
     }
 

@@ -32,7 +32,10 @@ public class PlayerBasics : MonoBehaviour, IDamageable
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);    
+
+        Transform playerTransform = GameObject.Find("Main camera").transform; // Asegúrate que el nombre sea correcto
+        playerTransform.rotation = Quaternion.Euler(0, 0, 0);  
     }
 
     public void TakeDamage(int damage)
