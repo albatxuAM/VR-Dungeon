@@ -747,7 +747,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 175635445}
   m_CameraFloorOffsetObject: {fileID: 274471039}
   m_RequestedTrackingOriginMode: 1
-  m_CameraYOffset: -1
+  m_CameraYOffset: 0
 --- !u!4 &175635454
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +805,7 @@ MonoBehaviour:
   minEyeTextureScale: 0.7
   maxEyeTextureScale: 1.26
   enableSuperResolution: 0
-  useRecommendedAntiAliasingLevel: 1
+  useRecommendedAntiAliasingLevel: 0
 --- !u!1 &274471039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,9 +3155,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 911602511}
+      - m_Target: {fileID: 911602513}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
