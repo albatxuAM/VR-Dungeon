@@ -6,7 +6,8 @@ public class BreakableObject : MonoBehaviour
     public GameObject brokenVersionPrefab;
     [Range(0f, 1f)]
     public float breakProbability = 0.25f;
-
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     public GameObject breakParticles;
     public float breakHeight = 2f;
     private bool isBeingHeld = false;
@@ -58,7 +59,9 @@ public class BreakableObject : MonoBehaviour
             Instantiate(brokenVersionPrefab, transform.position, Quaternion.identity);
         }
         Instantiate(breakParticles, transform.position, transform.rotation);
+        
         Destroy(gameObject); // Destruir el objeto original
+      
     }
 
     private void OnCollisionEnter(Collision collision)
