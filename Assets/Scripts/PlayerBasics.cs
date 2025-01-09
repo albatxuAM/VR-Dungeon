@@ -22,14 +22,14 @@ public class PlayerBasics : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log(currentHealth);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Debug.Log(currentHealth);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    TakeDamage(1);
+        //}
     }
 
     // Start is called before the first frame update

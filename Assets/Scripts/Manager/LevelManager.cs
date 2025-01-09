@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Mantener el manager entre escenas
+            //DontDestroyOnLoad(gameObject);  // Mantener el manager entre escenas
         }
         else
         {
@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            currentLevelIndex = -1;
             // Si es el último nivel, cargar el winLevel
             LoadWinLevel();
         }
@@ -174,5 +175,16 @@ public class LevelManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void RestartLevel()
+    {
+        player = GameObject.FindWithTag("Player");
+
+        currentLevelIndex = -1;
+
+        NextLevel();
+
+        healthPickup.SetActive(false);
     }
 }
