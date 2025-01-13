@@ -8,6 +8,8 @@ public class PlayerBasics : MonoBehaviour, IDamageable
     [SerializeField] public int maxHealth;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private GameObject hurtTunneling;
+    [SerializeField] private AudioClip hurt;
+    [SerializeField] private AudioSource source;
     private int currentHealth;
 
 
@@ -41,6 +43,7 @@ public class PlayerBasics : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        source.PlayOneShot(hurt);
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         StartCoroutine(HitAnim());

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7603411971724601561}
   - component: {fileID: 4328962730560095270}
   - component: {fileID: 2652457835933304377}
-  - component: {fileID: 5266815660361646031}
-  - component: {fileID: 6827522436361224012}
+  - component: {fileID: -3211435838038878208}
+  - component: {fileID: -596938138331828677}
   m_Layer: 0
   m_Name: DestroyParticles
   m_TagString: Untagged
@@ -4890,7 +4890,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &5266815660361646031
+--- !u!114 &-3211435838038878208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4899,12 +4899,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7777718834539426858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8f911823efdce499599eba0bfe109c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ae3c9f6ccaf78446a4c59b2e8cdfd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 6827522436361224012}
-  audioClip: {fileID: 8300000, guid: b0c0bcda865388f41aca25d665d86341, type: 3}
---- !u!82 &6827522436361224012
+  audioSource: {fileID: -596938138331828677}
+  audioClip: {fileID: 8300000, guid: be16e9d54d475ed459fe727e4e4be277, type: 3}
+--- !u!82 &-596938138331828677
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

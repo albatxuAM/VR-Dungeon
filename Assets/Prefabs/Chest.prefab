@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5179994648859836185}
   - component: {fileID: 8786848743463894505}
   - component: {fileID: 8538988899750966250}
-  - component: {fileID: 5806500465887434674}
-  - component: {fileID: 378972196989582600}
+  - component: {fileID: 6866893612336996321}
+  - component: {fileID: 3344920425165102152}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -162,7 +162,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5806500465887434674}
+      - m_Target: {fileID: 6866893612336996321}
         m_TargetAssemblyTypeName: ScriptChestSound, Assembly-CSharp
         m_MethodName: OpenChestSound
         m_Mode: 1
@@ -290,7 +290,7 @@ MonoBehaviour:
   dropPrefab: {fileID: 2620131183356007192, guid: 571738362f250a7479e2a997975d685f,
     type: 3}
   dropProbability: 1
---- !u!114 &5806500465887434674
+--- !u!114 &6866893612336996321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,12 +299,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2651233753872709644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54026d6948c7e1d4495c3778d8600b9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1415302b73cbefe49b0868f2c3e672ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 378972196989582600}
-  audioClip: {fileID: 8300000, guid: b0c0bcda865388f41aca25d665d86341, type: 3}
---- !u!82 &378972196989582600
+  audioSource: {fileID: 3344920425165102152}
+  audioClip: {fileID: 8300000, guid: 1c25d6d3d5249234a8b4c2f104692940, type: 3}
+--- !u!82 &3344920425165102152
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
