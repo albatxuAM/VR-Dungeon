@@ -307,6 +307,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efa5cbc8c2789ca428fbddd0fac26942, type: 3}
+--- !u!1001 &345683538
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8789807535818697453, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_Name
+      value: sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.302
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123368514865286607, guid: 192e5991409987a4cbc19686e99a229e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 192e5991409987a4cbc19686e99a229e, type: 3}
 --- !u!1 &349611201
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +527,8 @@ MonoBehaviour:
   brokenVersionPrefab: {fileID: 8131177419283281839, guid: 370ff53a71721324795e6564db3f4f62,
     type: 3}
   breakProbability: 0.25
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
   breakParticles: {fileID: 7777718834539426858, guid: 70d1218f880d93340a67d5d8abf515b3,
     type: 3}
   breakHeight: 2
@@ -1377,6 +1447,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8559502160001333159, guid: 47f6a2919460f45408ad28b8f09cfb7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559502160001333159, guid: 47f6a2919460f45408ad28b8f09cfb7f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559502160001333159, guid: 47f6a2919460f45408ad28b8f09cfb7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559502160001333159, guid: 47f6a2919460f45408ad28b8f09cfb7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1803,6 +1893,8 @@ MonoBehaviour:
   brokenVersionPrefab: {fileID: 8131177419283281839, guid: 370ff53a71721324795e6564db3f4f62,
     type: 3}
   breakProbability: 0.25
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
   breakParticles: {fileID: 7777718834539426858, guid: 70d1218f880d93340a67d5d8abf515b3,
     type: 3}
   breakHeight: 2
@@ -2868,6 +2960,8 @@ MonoBehaviour:
   brokenVersionPrefab: {fileID: 8131177419283281839, guid: 370ff53a71721324795e6564db3f4f62,
     type: 3}
   breakProbability: 0.25
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
   breakParticles: {fileID: 0}
   breakHeight: 2
 --- !u!4 &1256524202615769350
@@ -3314,3 +3408,4 @@ SceneRoots:
   - {fileID: 952313465}
   - {fileID: 510825128}
   - {fileID: 1102148590}
+  - {fileID: 345683538}

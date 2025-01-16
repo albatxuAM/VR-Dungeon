@@ -59,9 +59,9 @@ public class BreakableObject : MonoBehaviour
             Instantiate(brokenVersionPrefab, transform.position, Quaternion.identity);
         }
         Instantiate(breakParticles, transform.position, transform.rotation);
-        
+
         Destroy(gameObject); // Destruir el objeto original
-      
+
     }
 
     private void SpawnInside()
@@ -83,7 +83,7 @@ public class BreakableObject : MonoBehaviour
         if (damagingObject != null)
         {
             // Llamamos al m�todo Damage() cuando un objeto da�ino golpea
-
+            BreakObject();
         }
 
         if (breakedByFalling)

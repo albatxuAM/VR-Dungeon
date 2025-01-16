@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sword : MonoBehaviour, IDamaging
 {
 
-    [SerializeField]private int damage;
-    [SerializeField]private float soundSpeedThreshold;
-    [SerializeField]private float speedThreshold;
+    [SerializeField] private int damage;
+    [SerializeField] private float soundSpeedThreshold;
+    [SerializeField] private float speedThreshold;
     [SerializeField] private float atackCd;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject particleFX;
@@ -61,7 +59,7 @@ public class Sword : MonoBehaviour, IDamaging
                     // Llama a la corrutina HitEnemy
                     StartCoroutine(HitEnemy(damageable));
                     Vector3 positionP = collision.contacts[0].point;
-                    SimplePool.Spawn(particleFX,positionP,collision.transform.rotation);
+                    SimplePool.Spawn(particleFX, positionP, collision.transform.rotation);
                 }
             }
         }
