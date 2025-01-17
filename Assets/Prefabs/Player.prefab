@@ -982,6 +982,7 @@ Transform:
   - {fileID: 5667216348103482493}
   - {fileID: 4088386783800253123}
   - {fileID: 3599999186602910921}
+  - {fileID: 5028014401302487392}
   m_Father: {fileID: 3602399912837619403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4244225956462436019
@@ -1246,7 +1247,6 @@ Transform:
   - {fileID: 3342299079216110476}
   - {fileID: 583921847877396408}
   - {fileID: 1817411856005853869}
-  - {fileID: 5028014401302487392}
   m_Father: {fileID: 2077346306197769823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3872379102819921281
@@ -4558,6 +4558,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TunnelingVignette
       objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581377, guid: 6c8af5c8012f01440af6cb2bc3eb987c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581382, guid: 6c8af5c8012f01440af6cb2bc3eb987c,
         type: 3}
       propertyPath: m_RootOrder
@@ -4825,7 +4830,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3602399912837619403}
+    m_TransformParent: {fileID: 3342299079216110476}
     m_Modifications:
     - target: {fileID: 422622026761090107, guid: f1d8fe4cb9b72d2469dcc64c32bc1bba,
         type: 3}
