@@ -1115,7 +1115,7 @@ MonoBehaviour:
   - {fileID: 6108015321408149763, guid: 3d49c5631db612a4aad83ddaeef1cb1e, type: 3}
   - {fileID: 2533361525931799827, guid: a4e6b1fdd63cdb949a7287f1cc9d3010, type: 3}
   - {fileID: 2397479791946740372, guid: 0aa67d650bed26b45ae52265ef7db92e, type: 3}
-  winLevelName: MainMenu
+  winLevelName: WinScreen
   transportObject: {fileID: 646810798}
   transportDuration: 5
   healthPickup: {fileID: 293981820}
