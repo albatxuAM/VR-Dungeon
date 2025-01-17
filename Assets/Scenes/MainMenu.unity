@@ -484,7 +484,15 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 554952337}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5344324261134679917, guid: e2dedad3a7fb36a46ad9cc3714527be7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1747449810}
+    - targetCorrespondingSourceObject: {fileID: 222724044986859092, guid: e2dedad3a7fb36a46ad9cc3714527be7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1689113501}
   m_SourcePrefab: {fileID: 100100000, guid: e2dedad3a7fb36a46ad9cc3714527be7, type: 3}
 --- !u!4 &79778198 stripped
 Transform:
@@ -4112,7 +4120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1785866707
 RectTransform:
   m_ObjectHideFlags: 0
